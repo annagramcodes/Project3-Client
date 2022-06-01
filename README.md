@@ -192,6 +192,7 @@ Cloudinary
 
 Chackra-UI
 Toastify
+React-Calendar
 
 <br>
 
@@ -217,6 +218,6 @@ The url to your repository and to your deployed project
 
 ### Contributors
 
-FirstName LastName - <github-username> - <linkedin-profile-link>
+Alexandre Alves - <https://github.com/aletrad> - <https://www.linkedin.com/in/alexandre-alves-dev/>
 
-FirstName LastName - <github-username> - <linkedin-profile-link>
+Anna Egger - <https://github.com/annagramcodes> - <https://www.linkedin.com/in/anna-egger/>
