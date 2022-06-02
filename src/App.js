@@ -2,8 +2,8 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import { Routes, Route } from "react-router-dom";
-import SignupPage from "./pages/Signuppage";
-import LoginPage from "./pages/Loginpage";
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
 //import IsPrivate from './components/IsPrivate';
 import IsAnon from "./components/IsAnon";
 
