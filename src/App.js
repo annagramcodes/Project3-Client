@@ -7,6 +7,10 @@ import LoginPage from "./pages/LoginPage";
 //import IsPrivate from './components/IsPrivate';
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
+import ProfilePage from "./pages/ProfilePage";
+import RequestPage from "./pages/RequestPage";
+import TattoosPage from "./pages/TattoosPage";
+import StylesPage from "./pages/StylesPage";
 
 function App() {
   return (
@@ -23,15 +27,44 @@ function App() {
             </IsAnon>
           }
         />
-
-        <Route path="/user-profile" element={
-          <IsPrivate><ProfilePage/> </IsPrivate>
         <Route
           path="/login"
           element={
             <IsAnon>
               <LoginPage />
             </IsAnon>
+          }
+        />
+        <Route
+          path="/user-profile"
+          element={
+            <IsPrivate>
+              <ProfilePage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/user-profile"
+          element={
+            <IsPrivate>
+              <RequestPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/user-profile"
+          element={
+            <IsPrivate>
+              <TattoosPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/user-profile"
+          element={
+            <IsPrivate>
+              <StylesPage />
+            </IsPrivate>
           }
         />
       </Routes>
