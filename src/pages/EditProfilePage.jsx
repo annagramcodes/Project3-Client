@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/auth.context";
 
 function EditProfilePage() {
   const [username, setUsername] = useState("");
@@ -9,6 +10,7 @@ function EditProfilePage() {
 
   const { userId } = useParams();
   const navigate = useNavigate();
+  const { authenticateUser, logoutUser, storeToken } = useContext(AuthContext);
 
   const getUser = async () => {
     try {
@@ -52,6 +54,7 @@ function EditProfilePage() {
           },
         }
       );
+      logoutUser();
       navigate("/signup");
     } catch (error) {
       console.log(error);
@@ -60,7 +63,7 @@ function EditProfilePage() {
 
   useEffect(() => {
     getUser();
-  });
+  }, []);
 
   const handleUsername = (e) => setUsername(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
@@ -80,9 +83,11 @@ function EditProfilePage() {
           Authorization: `Bearer ${getToken}`,
         },
       })
-      .then(() => {
+      .then((response) => {
         setUsername("");
         setEmail("");
+        storeToken(response.data.authToken);
+        authenticateUser();
         navigate(`/profile`);
       })
       .catch((err) => console.log(err));
@@ -121,14 +126,14 @@ function EditProfilePage() {
         <label htmlFor="email">Email</label>
         <input type="text" name="email" value={email} onChange={handleEmail} />
 
-        <label htmlFor="image">Upload a Photo</label>
+        {/* <label htmlFor="image">Upload a Photo</label>
         <input
           type="file"
           name="existingImage"
           id="image"
           value={imageUrl}
           onChange={handleImageUrl}
-        />
+        /> */}
 
         <button type="submit">Edit</button>
       </form>

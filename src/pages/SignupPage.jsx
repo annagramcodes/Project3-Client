@@ -25,7 +25,11 @@ function SignupPage() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/auth/signup`, body)
       .then(() => {
-        navigate("/login");
+        if (profileType === "artist") {
+          navigate("/login");
+        } else {
+          navigate("/login");
+        }
       })
       .catch((err) => {
         setErrorMessage(err.response.data.errorMessage);
