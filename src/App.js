@@ -13,6 +13,8 @@ import TattoosPage from "./pages/TattoosPage";
 import StylesPage from "./pages/StylesPage";
 import { ChakraProvider } from "@chakra-ui/react";
 import EditProfilePage from "./pages/EditProfilePage";
+import ArtistSignUp from "./pages/ArtistSignUp";
+import ArtistProfile from "./pages/ArtistProfile";
 
 function App() {
   return (
@@ -30,19 +32,38 @@ function App() {
               </IsAnon>
             }
           />
-          <Route
-            path="/login"
-            element={
-              <IsAnon>
-                <LoginPage />
-              </IsAnon>
-            }
-          />
+          <Route path="/login" element={<LoginPage />} />
           <Route
             path="/profile"
             element={
               <IsPrivate>
                 <ProfilePage />
+              </IsPrivate>
+            }
+          />
+
+          <Route
+            path="/signup-artist"
+            element={
+              <IsPrivate>
+                <ArtistSignUp />
+              </IsPrivate>
+            }
+          />
+
+          <Route
+            path="/artist"
+            element={
+              <IsPrivate>
+                <ArtistProfile />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/artist/edit/artistId"
+            element={
+              <IsPrivate>
+                <ArtistProfile />
               </IsPrivate>
             }
           />

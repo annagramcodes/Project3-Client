@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 
 function ProfilePage() {
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext);
-  console.log(user);
+  console.log("______________updated?", user);
   return (
     <div>
       {isLoggedIn && (

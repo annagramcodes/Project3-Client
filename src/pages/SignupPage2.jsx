@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 import {
   Radio,
   RadioGroup,
@@ -15,6 +16,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 
 function SignupPage() {
+  const { authenticateUser, storeToken } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -30,8 +32,14 @@ function SignupPage() {
     console.log(body);
     axios
       .post(`${process.env.REACT_APP_API_URL}/auth/signup`, body)
-      .then(() => {
-        navigate("/login");
+      .then((response) => {
+        storeToken(response.data.authToken);
+        authenticateUser();
+        if (profileType === "artist") {
+          navigate("/signup-artist");
+        } else {
+          navigate("/login");
+        }
       })
       .catch((err) => {
         setErrorMessage(err.response.data.errorMessage);
