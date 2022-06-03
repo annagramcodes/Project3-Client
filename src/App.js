@@ -2,7 +2,6 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import { Routes, Route } from "react-router-dom";
-import SignupPage from "./pages/SignupPage";
 import SignupPage2 from "./pages/SignupPage2";
 import LoginPage from "./pages/LoginPage";
 //import IsPrivate from './components/IsPrivate';
@@ -13,6 +12,7 @@ import RequestPage from "./pages/RequestPage";
 import TattoosPage from "./pages/TattoosPage";
 import StylesPage from "./pages/StylesPage";
 import { ChakraProvider } from "@chakra-ui/react";
+import EditProfilePage from "./pages/EditProfilePage";
 
 function App() {
   return (
@@ -39,15 +39,24 @@ function App() {
             }
           />
           <Route
-            path="/user-profile"
+            path="/profile"
             element={
               <IsPrivate>
                 <ProfilePage />
               </IsPrivate>
             }
           />
+
           <Route
-            path="/user-profile"
+            path={"/profile/edit/:userId"}
+            element={
+              <IsPrivate>
+                <EditProfilePage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/requests"
             element={
               <IsPrivate>
                 <RequestPage />
@@ -55,7 +64,7 @@ function App() {
             }
           />
           <Route
-            path="/user-profile"
+            path="/tattoos"
             element={
               <IsPrivate>
                 <TattoosPage />
@@ -63,7 +72,7 @@ function App() {
             }
           />
           <Route
-            path="/user-profile"
+            path="/styles"
             element={
               <IsPrivate>
                 <StylesPage />
