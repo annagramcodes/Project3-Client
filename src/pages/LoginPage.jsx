@@ -1,6 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import {
+  Input,
+  FormControl,
+  FormLabel,
+  VStack,
+  Button,
+  Container,
+} from "@chakra-ui/react";
 import axios from "axios";
 
 function LoginPage() {
@@ -33,28 +41,38 @@ function LoginPage() {
   };
 
   return (
-    <div className="LoginPage">
+    <Container className="LoginPage">
       <h1>Login</h1>
+      <VStack>
+        <form onSubmit={handleSubmit}>
+          <FormControl>
+            <FormLabel htmlFor="email">Email</FormLabel>
+            <Input
+              type="text"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
+          </FormControl>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input type="text" name="email" value={email} onChange={handleEmail} />
+          <FormControl>
+            <FormLabel htmlFor="password">Password</FormLabel>
+            <Input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+            />
+          </FormControl>
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
+          <Button type="submit">Login</Button>
+        </form>
 
-        <button type="submit">Login</button>
-      </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <p>Don't have an account?</p>
-      <Link to="/signup"> Sign up</Link>
-    </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <p>Don't have an account?</p>
+        <Link to="/signup"> Sign up</Link>
+      </VStack>
+    </Container>
   );
 }
 
