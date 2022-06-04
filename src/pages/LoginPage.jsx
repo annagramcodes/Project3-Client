@@ -18,7 +18,7 @@ function LoginPage() {
 
   const navigate = useNavigate();
 
-  const { storeToken, authenticateUser } = useContext(AuthContext);
+  const { storeToken, user, authenticateUser } = useContext(AuthContext);
 
   const handlePassword = (e) => setPassword(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
@@ -32,8 +32,13 @@ function LoginPage() {
       .post(`${process.env.REACT_APP_API_URL}/auth/login`, body)
       .then((response) => {
         storeToken(response.data.authToken);
+
         authenticateUser();
-        navigate("/profile");
+        if (response.data.type === "artist") {
+          navigate("/artist");
+        } else {
+          navigate("/profile");
+        }
       })
       .catch((err) => {
         setErrorMessage(err.response.data.errorMessage);

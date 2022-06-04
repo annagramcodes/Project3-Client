@@ -1,28 +1,47 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link as ReachLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { Image, Link, Box, Heading, Button, Container } from "@chakra-ui/react";
 
 function ProfilePage() {
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext);
-  console.log("______________updated?", user);
+
   return (
-    <div>
+    <>
       {isLoggedIn && (
-        <>
-          <Link to="/">
+        <Container>
+          <Link as={ReachLink} to="/">
             <button>Homepage</button>
           </Link>
-          <Link to={`/profile/edit/${user._id}`}>
-            <button>Edit</button>
-          </Link>
           <button onClick={logoutUser}>Logout</button>
-          <p>Welcome {user.username}</p>
-          <p>{user.email}</p>
-          <img src={user.imageUrl} alt="" />
-        </>
+          <Box
+            display="flex"
+            flexDir={{ base: "column-reverse", md: "row-reverse" }}
+            justifyContent="center"
+            mt="2"
+            gap={4}
+            alignItems="center"
+          >
+            <Box w="">
+              <Heading as="h2" py={3} size="xl">
+                Welcome {user.username}
+              </Heading>
+              <Link as={ReachLink} to={`/profile/edit/${user._id}`}>
+                <Button>Edit Profile</Button>
+              </Link>
+            </Box>
+            <Image
+              borderRadius="full"
+              boxSize="150px"
+              objectFit="cover"
+              src={user.imageUrl}
+              alt=""
+            />
+          </Box>
+        </Container>
       )}
-    </div>
+    </>
   );
 }
 

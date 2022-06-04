@@ -29,7 +29,7 @@ function SignupPage() {
   const onSubmit = (data) => {
     const { username, password, email, profileType } = data;
     const body = { username, password, email, profileType };
-    console.log(body);
+
     axios
       .post(`${process.env.REACT_APP_API_URL}/auth/signup`, body)
       .then((response) => {

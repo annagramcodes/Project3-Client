@@ -2,6 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
+import {
+  Container,
+  Heading,
+  FormLabel,
+  Input,
+  FormControl,
+  Button,
+} from "@chakra-ui/react";
 
 function EditProfilePage() {
   const [username, setUsername] = useState("");
@@ -100,27 +108,41 @@ function EditProfilePage() {
   };
 
   return (
-    <div className="EditProfilePage">
-      <h3>Edit the Profile</h3>
+    <Container className="EditProfilePage">
+      <Heading as="h2" size="xl">
+        Edit your Profile
+      </Heading>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleUsername}
-        />
-
-        <label htmlFor="email">Email</label>
-        <input type="text" name="email" value={email} onChange={handleEmail} />
-
-        <label htmlFor="image">Upload a Photo</label>
-        <input type="file" onChange={(e) => handleFileUpload(e)} />
-
-        <button type="submit">Edit</button>
+        <FormControl>
+          <FormLabel htmlFor="username"> Username:</FormLabel>
+          <Input
+            type="text"
+            name="username"
+            value={username}
+            onChange={handleUsername}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="email">Email:</FormLabel>
+          <Input
+            type="text"
+            name="email"
+            value={email}
+            onChange={handleEmail}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="image">Upload a Photo:</FormLabel>
+          <input type="file" onChange={(e) => handleFileUpload(e)} />
+        </FormControl>
+        <Button my={4} type="submit">
+          Edit Profile
+        </Button>
       </form>
-      <button onClick={deleteUser}>Delete</button>
-    </div>
+      <Button my={2} onClick={deleteUser}>
+        Delete Profile
+      </Button>
+    </Container>
   );
 }
 
