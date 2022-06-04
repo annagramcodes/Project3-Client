@@ -1,22 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import useAxios from "../utils/axios.hook";
 import {
-  VStack,
   Button,
-  Input,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Container,
   Checkbox,
   CheckboxGroup,
-  Stack,
+  Container,
   Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+  VStack,
 } from "@chakra-ui/react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import useAxios from "../utils/axios.hook";
 
 function ArtistSignUp() {
   const { apiClient } = useAxios();

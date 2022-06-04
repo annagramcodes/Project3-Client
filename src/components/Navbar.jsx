@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import { Link } from "@chakra-ui/react";
+import React, { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Image, Link, Box, Heading, Button, Container } from "@chakra-ui/react";
+import { Link as ReachLink } from "react-router-dom";
 
 function Navbar() {
   const {
@@ -11,35 +9,33 @@ function Navbar() {
     user, // <== UPDATE
     logOutUser, // <== UPDATE
   } = useContext(AuthContext);
-
+  console.log(user);
   return (
     <nav>
-      <Link to="/">
-        <button>Home</button>
-      </Link>
+      <ReachLink to="/">Home</ReachLink>
 
       {isLoggedIn && (
         <>
-          <Link to="/projects">
-            <button>Projects</button>
-          </Link>
+          <ReachLink to="/profile">Profile</ReachLink>
 
-          {/*   UPDATE   */}
-          <button onClick={logOutUser}>Logout</button>
+          {user.profileType === "artist" && (
+            <ReachLink to="/artist">Artist</ReachLink>
+          )}
+          <Link>
+            <button onClick={logOutUser}>Logout</button>
+          </Link>
           <span>{user && user.name}</span>
         </>
       )}
 
       {!isLoggedIn && (
         <>
-          <Link to="/signup">
-            {" "}
-            <button>Sign Up</button>{" "}
-          </Link>
-          <Link to="/login">
-            {" "}
-            <button>Login</button>{" "}
-          </Link>
+          <ReachLink to="/signup">
+            <Link>Sign Up</Link>
+          </ReachLink>
+          <ReachLink to="/login">
+            <Link>Login</Link>
+          </ReachLink>
         </>
       )}
     </nav>

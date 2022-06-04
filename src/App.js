@@ -4,7 +4,6 @@ import HomePage from "./pages/HomePage";
 import { Routes, Route } from "react-router-dom";
 import SignupPage2 from "./pages/SignupPage2";
 import LoginPage from "./pages/LoginPage";
-//import IsPrivate from './components/IsPrivate';
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import ProfilePage from "./pages/ProfilePage";
@@ -15,6 +14,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import EditProfilePage from "./pages/EditProfilePage";
 import ArtistSignUp from "./pages/ArtistSignUp";
 import ArtistProfile from "./pages/ArtistProfile";
+import ArtistProfilePublic from "./pages/ArtistProfilePublic";
+import EditArtistProfile from "./pages/EditArtistProfile";
 
 function App() {
   return (
@@ -41,12 +42,29 @@ function App() {
               </IsPrivate>
             }
           />
+          <Route
+            path={"/profile/edit/:userId"}
+            element={
+              <IsPrivate>
+                <EditProfilePage />
+              </IsPrivate>
+            }
+          />
 
           <Route
             path="/signup-artist"
             element={
               <IsPrivate>
                 <ArtistSignUp />
+              </IsPrivate>
+            }
+          />
+
+          <Route
+            path="/artist/:artistId"
+            element={
+              <IsPrivate>
+                <ArtistProfilePublic />
               </IsPrivate>
             }
           />
@@ -60,22 +78,14 @@ function App() {
             }
           />
           <Route
-            path="/artist/edit/:artistId"
+            path="/artist/edit"
             element={
               <IsPrivate>
-                <ArtistProfile />
+                <EditArtistProfile />
               </IsPrivate>
             }
           />
 
-          <Route
-            path={"/profile/edit/:userId"}
-            element={
-              <IsPrivate>
-                <EditProfilePage />
-              </IsPrivate>
-            }
-          />
           <Route
             path="/requests"
             element={
