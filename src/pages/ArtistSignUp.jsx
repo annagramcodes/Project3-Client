@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-
+import useAxios from "../utils/axios.hook";
 import {
   VStack,
   Button,
@@ -19,7 +19,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 
 function ArtistSignUp() {
-  const { authenticateUser, logoutUser, storeToken } = useContext(AuthContext);
+  const { apiClient } = useAxios();
 
   const {
     register,
@@ -47,13 +47,8 @@ function ArtistSignUp() {
     };
     console.log(body);
 
-    const getToken = localStorage.getItem("authToken");
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/api/artist`, body, {
-        headers: {
-          Authorization: `Bearer ${getToken}`,
-        },
-      })
+    apiClient
+      .post(`/api/artist`, body)
       .then(() => {
         navigate("/login");
       })
@@ -93,7 +88,6 @@ function ArtistSignUp() {
           </FormControl>
           <FormControl isInvalid={errors.styles}>
             <FormLabel htmlFor="styles">Which styles do you tattoo?</FormLabel>
-            {/* <Input type="text" {...register("styles", { required: true })} /> */}
             <CheckboxGroup {...register("styles")} colorScheme="pink">
               <Flex flexWrap="wrap" gap={[1, 5]} direction={["column", "row"]}>
                 <Checkbox {...register("styles")} value="blackwork">
