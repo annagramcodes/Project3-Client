@@ -1,4 +1,4 @@
-import { Link } from "@chakra-ui/react";
+import { Button, Flex, Link } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Link as ReachLink } from "react-router-dom";
@@ -11,32 +11,42 @@ function Navbar() {
   } = useContext(AuthContext);
   console.log(user);
   return (
-    <nav>
-      <ReachLink to="/">Home</ReachLink>
+    <Flex p={4} bg="teal.100" align="center" gap={4} mb={4} justify="center">
+      <ReachLink to="/">
+        <Button variant="link">Home</Button>
+      </ReachLink>
 
       {isLoggedIn && (
         <>
-          <ReachLink to="/profile">Profile</ReachLink>
+          <ReachLink to="/profile">
+            <Button variant="link">Profile</Button>
+          </ReachLink>
 
           {/* FIXME: FIx Authorization Error */}
 
           {user.profileType === "artist" && (
             <ReachLink to="/artist">Artist</ReachLink>
           )}
-          <Link>
-            <button onClick={logOutUser}>Logout</button>
-          </Link>
+
+          <Button variant="link" onClick={logOutUser}>
+            Logout
+          </Button>
+
           <span>{user && user.name}</span>
         </>
       )}
 
       {!isLoggedIn && (
         <>
-          <ReachLink to="/signup">Sign Up</ReachLink>
-          <ReachLink to="/login">Login</ReachLink>
+          <ReachLink to="/signup">
+            <Button variant="link">Sign Up</Button>
+          </ReachLink>
+          <ReachLink to="/login">
+            <Button variant="link">Login</Button>
+          </ReachLink>
         </>
       )}
-    </nav>
+    </Flex>
   );
 }
 
