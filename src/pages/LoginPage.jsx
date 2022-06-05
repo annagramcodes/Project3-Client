@@ -34,11 +34,7 @@ function LoginPage() {
         storeToken(response.data.authToken);
 
         authenticateUser();
-        if (response.data.type === "artist") {
-          navigate("/dashboard");
-        } else {
-          navigate("/profile");
-        }
+        navigate("/dashboard");
       })
       .catch((err) => {
         setErrorMessage(err.response.data.errorMessage);

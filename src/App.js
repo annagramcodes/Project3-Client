@@ -16,6 +16,7 @@ import ArtistSignUp from "./pages/ArtistSignUp";
 import ArtistDashboard from "./pages/ArtistDashboard";
 import ArtistPage from "./pages/ArtistPage";
 import EditArtist from "./pages/EditArtist";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
@@ -73,7 +74,7 @@ function App() {
             path="/dashboard"
             element={
               <IsPrivate>
-                <ArtistDashboard />
+                <Dashboard />
               </IsPrivate>
             }
           />

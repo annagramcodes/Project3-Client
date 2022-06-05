@@ -25,7 +25,7 @@ function ArtistDashboard() {
     <Container>
       <ArtistContent artist={artist} />
       <ReachLink to="/artist/edit">
-        <Button>Edit Profile</Button>
+        <Button>Edit Dashboard</Button>
       </ReachLink>
     </Container>
   );
