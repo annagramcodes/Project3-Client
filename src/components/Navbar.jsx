@@ -18,6 +18,8 @@ function Navbar() {
         <>
           <ReachLink to="/profile">Profile</ReachLink>
 
+          {/* FIXME: FIx Authorization Error */}
+
           {user.profileType === "artist" && (
             <ReachLink to="/artist">Artist</ReachLink>
           )}
@@ -30,12 +32,8 @@ function Navbar() {
 
       {!isLoggedIn && (
         <>
-          <ReachLink to="/signup">
-            <Link>Sign Up</Link>
-          </ReachLink>
-          <ReachLink to="/login">
-            <Link>Login</Link>
-          </ReachLink>
+          <ReachLink to="/signup">Sign Up</ReachLink>
+          <ReachLink to="/login">Login</ReachLink>
         </>
       )}
     </nav>
