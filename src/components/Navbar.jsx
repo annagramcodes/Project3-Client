@@ -9,7 +9,7 @@ function Navbar() {
     user, // <== UPDATE
     logoutUser, // <== UPDATE
   } = useContext(AuthContext);
-
+  console.log(user);
   return (
     <Flex p={4} bg="gray.100" align="center" gap={4} mb={4} justify="center">
       <ReachLink to="/">
@@ -23,8 +23,8 @@ function Navbar() {
           </ReachLink>
 
           {user.profileType === "artist" && (
-            <ReachLink to="/artist">
-              <Button variant="link"> Artist Dashboard</Button>
+            <ReachLink to="/dashboard">
+              <Button variant="link"> Dashboard</Button>
             </ReachLink>
           )}
 
