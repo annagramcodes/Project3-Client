@@ -9,7 +9,7 @@ function Navbar() {
     user, // <== UPDATE
     logoutUser, // <== UPDATE
   } = useContext(AuthContext);
-  console.log(user);
+
   return (
     <Flex p={4} bg="gray.100" align="center" gap={4} mb={4} justify="center">
       <ReachLink to="/">

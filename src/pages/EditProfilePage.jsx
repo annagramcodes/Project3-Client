@@ -97,7 +97,6 @@ function EditProfilePage() {
         },
       })
       .then((response) => {
-        console.log(response);
         setUsername("");
         setEmail("");
         storeToken(response.data.authToken);
