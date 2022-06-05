@@ -11,10 +11,6 @@ function ProfilePage() {
     <>
       {isLoggedIn && (
         <Container>
-          <Link as={ReachLink} to="/">
-            <button>Homepage</button>
-          </Link>
-          <button onClick={logoutUser}>Logout</button>
           <Box
             display="flex"
             flexDir={{ base: "column-reverse", md: "row-reverse" }}

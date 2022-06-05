@@ -7,11 +7,11 @@ function Navbar() {
   const {
     isLoggedIn,
     user, // <== UPDATE
-    logOutUser, // <== UPDATE
+    logoutUser, // <== UPDATE
   } = useContext(AuthContext);
-  console.log(user);
+
   return (
-    <Flex p={4} bg="teal.100" align="center" gap={4} mb={4} justify="center">
+    <Flex p={4} bg="gray.100" align="center" gap={4} mb={4} justify="center">
       <ReachLink to="/">
         <Button variant="link">Home</Button>
       </ReachLink>
@@ -22,13 +22,13 @@ function Navbar() {
             <Button variant="link">Profile</Button>
           </ReachLink>
 
-          {/* FIXME: FIx Authorization Error */}
-
           {user.profileType === "artist" && (
-            <ReachLink to="/artist">Artist</ReachLink>
+            <ReachLink to="/artist">
+              <Button variant="link"> Artist Dashboard</Button>
+            </ReachLink>
           )}
 
-          <Button variant="link" onClick={logOutUser}>
+          <Button variant="link" onClick={logoutUser}>
             Logout
           </Button>
 
