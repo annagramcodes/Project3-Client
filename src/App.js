@@ -13,9 +13,9 @@ import StylesPage from "./pages/StylesPage";
 import { ChakraProvider } from "@chakra-ui/react";
 import EditProfilePage from "./pages/EditProfilePage";
 import ArtistSignUp from "./pages/ArtistSignUp";
-import ArtistProfile from "./pages/ArtistProfile";
-import ArtistProfilePublic from "./pages/ArtistProfilePublic";
-import EditArtistProfile from "./pages/EditArtistProfile";
+import ArtistDashboard from "./pages/ArtistDashboard";
+import ArtistPage from "./pages/ArtistPage";
+import EditArtist from "./pages/EditArtist";
 
 function App() {
   return (
@@ -64,16 +64,16 @@ function App() {
             path="/artist/:artistId"
             element={
               <IsPrivate>
-                <ArtistProfilePublic />
+                <ArtistPage />
               </IsPrivate>
             }
           />
 
           <Route
-            path="/artist"
+            path="/dashboard"
             element={
               <IsPrivate>
-                <ArtistProfile />
+                <ArtistDashboard />
               </IsPrivate>
             }
           />
@@ -81,7 +81,7 @@ function App() {
             path="/artist/edit"
             element={
               <IsPrivate>
-                <EditArtistProfile />
+                <EditArtist />
               </IsPrivate>
             }
           />

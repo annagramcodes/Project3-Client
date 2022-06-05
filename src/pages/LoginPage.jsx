@@ -35,7 +35,7 @@ function LoginPage() {
 
         authenticateUser();
         if (response.data.type === "artist") {
-          navigate("/artist");
+          navigate("/dashboard");
         } else {
           navigate("/profile");
         }

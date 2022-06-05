@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ArtistContent from "../components/ArtistContent";
 import useAxios from "../utils/axios.hook";
 
-function ArtistProfilePublic() {
+function ArtistPage() {
   const [artist, setArtist] = useState();
   const { artistId } = useParams();
 
@@ -26,4 +26,4 @@ function ArtistProfilePublic() {
   );
 }
 
-export default ArtistProfilePublic;
+export default ArtistPage;

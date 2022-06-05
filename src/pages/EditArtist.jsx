@@ -1,15 +1,13 @@
-import { Button, Container, Spinner } from "@chakra-ui/react";
+import { Container, Heading, Spinner } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
-import { Link as ReachLink } from "react-router-dom";
-import ArtistContent from "../components/ArtistContent";
 import { AuthContext } from "../context/auth.context";
 import useAxios from "../utils/axios.hook";
 
-function ArtistProfile() {
+function EditArtist() {
   const [artist, setArtist] = useState();
-  const { user } = useContext(AuthContext);
 
   const { apiClient } = useAxios();
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     apiClient.get(`/api/artist/byUser/${user._id}`).then((response) => {
@@ -23,12 +21,9 @@ function ArtistProfile() {
 
   return (
     <Container>
-      <ArtistContent artist={artist} />
-      <ReachLink to="/artist/edit">
-        <Button>Edit Profile</Button>
-      </ReachLink>
+      <Heading as="h1">{artist.name}</Heading>
     </Container>
   );
 }
 
-export default ArtistProfile;
+export default EditArtist;
