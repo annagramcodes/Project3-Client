@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDropzone } from "react-dropzone";
 import {
   Radio,
   RadioGroup,
@@ -11,9 +12,11 @@ import {
   FormErrorMessage,
   Container,
   Textarea,
+  Box,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+
 // import Calendar from "react-calendar";
 // import "react-calendar/dist/Calendar.css";
 
@@ -30,26 +33,59 @@ function RequestCreate() {
   const [imagesUrl, setImagesUrl] = useState([]);
 
   const handlePlacement = (e) => setPlacement(e.target.value);
-  const handleAppointmentDate = (e) => setAppointmentDate(e.target.value);
+  const handleAppointmentDate = (e) => {
+    const newDate = new Date(e.target.value);
+    setAppointmentDate(newDate.toLocaleString("en-US"));
+    console.log(appointmentDate);
+  };
+
   const handleDescription = (e) => setDescription(e.target.value);
   const handleSize = (e) => setSize(e.target.value);
   const handleBudget = (e) => setBudget(e.target.value);
   const handleimagesUrl = (e) => setImagesUrl(e.target.value);
 
-  const handleFilesUpload = (e) => {
-    setIsUploading(true);
-    const uploadData = new FormData();
+  // const handleFilesUpload = (e) => {
+  //   setIsUploading(true);
+  //   const uploadData = new FormData();
 
-    uploadData.append("imagesUrl", e.target.files[0]);
+  //   uploadData.append("imagesUrl", e.target.files[0]);
+
+  //   axios
+  //     .post(`${process.env.REACT_APP_API_URL}/api/uploads`, uploadData)
+  //     .then((response) => {
+  //       setIsUploading(false);
+  //       setImagesUrl(response.data.newPhotos);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  const onDrop = async (droppedFiles) => {
+    setIsUploading(true);
+    const [file] = droppedFiles;
+    const uploadData = new FormData();
+    droppedFiles.forEach((file) => {
+      return uploadData.append("imagesUrl", file);
+    });
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/uploads`, uploadData)
       .then((response) => {
         setIsUploading(false);
         setImagesUrl(response.data.newPhotos);
+        console.log(response.data.newPhotos);
       })
       .catch((err) => console.log(err));
   };
+  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
+    maxFiles: 10,
+    onDrop,
+  });
+
+  const acceptedFileItems = acceptedFiles.map((file) => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -184,12 +220,19 @@ function RequestCreate() {
           </FormControl>
 
           <FormControl>
-            <FormLabel htmlFor="image">Upload a Photo:</FormLabel>
+            {/* <FormLabel htmlFor="image">Upload a Photo:</FormLabel>
             <Input
               type="file"
               onChange={(e) => handleFilesUpload(e)}
               multiple
-            />
+            /> */}
+            <Box p={5} bg="gray.100" m={4}>
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <p>Drag 'n' drop some files here, or click to select files</p>
+                <ul>{acceptedFileItems}</ul>
+              </div>
+            </Box>
           </FormControl>
 
           <FormControl>
