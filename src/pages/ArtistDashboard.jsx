@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Container, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Text,
+  Container,
+  Spinner,
+  Heading,
+} from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Link as ReachLink } from "react-router-dom";
@@ -46,30 +54,29 @@ function ArtistDashboard() {
   }
 
   return (
-    <Container>
-      <Flex
-        flexDirection={{ sm: "column", md: "row" }}
-        w="50vw"
-        gap={{ sm: "20px", md: "80px" }}
-      >
-        <ArtistContent artist={artist} />
-
-        <Box>
-          {!!artist.portfolioImages.length && (
-            <ArtistImages images={artist.portfolioImages} />
-          )}
-          <Box p={3} bg="white" border="1px dashed lightgrey" m={4}>
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              <p>Please drag and drop</p>
-            </div>
-          </Box>
-          <Button onClick={saveImages}>Save Images</Button>
-        </Box>
-      </Flex>
-      <ReachLink to="/artist/edit">
-        <Button>Edit Dashboard</Button>
-      </ReachLink>
+    <Container py={{ sm: 4, md: 10 }}>
+      <Box>
+        <ArtistContent artist={artist}>
+          <ReachLink to="/artist/edit">
+            <Button mt={6}>Edit</Button>
+          </ReachLink>{" "}
+        </ArtistContent>
+      </Box>
+      <Heading color="gray.600" my={10} as="h2">
+        Create your portfolio
+      </Heading>
+      {!!artist.portfolioImages.length && (
+        <ArtistImages artist={artist} setArtist={setArtist} />
+      )}
+      <Box h="80px" p={3} bg="white" border="1px dashed lightgrey" m={4}>
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          <Text pt={3}>Drag and drop your images here</Text>
+        </div>
+      </Box>
+      <Button colorScheme="pink" onClick={saveImages}>
+        Save Collection
+      </Button>
     </Container>
   );
 }

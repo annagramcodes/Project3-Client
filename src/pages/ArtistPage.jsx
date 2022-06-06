@@ -10,7 +10,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ArtistContent from "../components/ArtistContent";
-import RequestButton from "../components/RequestButton";
+
 import { AuthContext } from "../context/auth.context";
 import useAxios from "../utils/axios.hook";
 import { Link as ReachLink } from "react-router-dom";
@@ -36,22 +36,23 @@ function ArtistPage() {
   }
 
   return (
-    <Container>
-      <Flex>
-        <ArtistContent artist={artist} />
-        <Box>
-          <ArtistImages />
-        </Box>
-      </Flex>
-
+    <Container py={5}>
       <Box>
-        <ButtonGroup m={2}>
-          <Link as={ReachLink} to={`/requests/${artist._id}/create`}>
-            <RequestButton />
-          </Link>
-          <Button>Save</Button>
-        </ButtonGroup>
+        <ArtistContent artist={artist}>
+          <Flex justify="center" align="center">
+            <ButtonGroup>
+              <Link as={ReachLink} to={`/requests/${artist._id}/create`}>
+                <Button colorScheme="pink"> Book</Button>
+              </Link>
+              <Button colorScheme="grey" variant="outline">
+                Save
+              </Button>
+            </ButtonGroup>
+          </Flex>
+        </ArtistContent>
       </Box>
+      {!!artist.portfolioImages.length && <ArtistImages artist={artist} />}
+      <Box></Box>
     </Container>
   );
 }
