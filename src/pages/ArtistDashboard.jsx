@@ -1,4 +1,4 @@
-import { Box, Button, Container, Spinner } from "@chakra-ui/react";
+import { Box, Button, Flex, Container, Spinner } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Link as ReachLink } from "react-router-dom";
@@ -47,20 +47,26 @@ function ArtistDashboard() {
 
   return (
     <Container>
-      <ArtistContent artist={artist} />
+      <Flex
+        flexDirection={{ sm: "column", md: "row" }}
+        w="50vw"
+        gap={{ sm: "20px", md: "80px" }}
+      >
+        <ArtistContent artist={artist} />
 
-      {!!artist.portfolioImages.length && (
-        <ArtistImages images={artist.portfolioImages} />
-      )}
-
-      <Box p={5} bg="gray.100" m={4}>
-        <div {...getRootProps()}>
-          <input {...getInputProps()} />
-          <p>Please drag and drop</p>
-        </div>
-      </Box>
-      <Button onClick={saveImages}>Save Images</Button>
-
+        <Box>
+          {!!artist.portfolioImages.length && (
+            <ArtistImages images={artist.portfolioImages} />
+          )}
+          <Box p={3} bg="white" border="1px dashed lightgrey" m={4}>
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <p>Please drag and drop</p>
+            </div>
+          </Box>
+          <Button onClick={saveImages}>Save Images</Button>
+        </Box>
+      </Flex>
       <ReachLink to="/artist/edit">
         <Button>Edit Dashboard</Button>
       </ReachLink>

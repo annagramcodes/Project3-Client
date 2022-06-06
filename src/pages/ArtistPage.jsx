@@ -1,4 +1,11 @@
-import { Box, Button, ButtonGroup, Container, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Container,
+  Flex,
+  Spinner,
+} from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
@@ -7,6 +14,7 @@ import RequestButton from "../components/RequestButton";
 import { AuthContext } from "../context/auth.context";
 import useAxios from "../utils/axios.hook";
 import { Link as ReachLink } from "react-router-dom";
+import ArtistImages from "../components/ArtistImages";
 
 function ArtistPage() {
   const [artist, setArtist] = useState();
@@ -29,7 +37,13 @@ function ArtistPage() {
 
   return (
     <Container>
-      <ArtistContent artist={artist} />
+      <Flex>
+        <ArtistContent artist={artist} />
+        <Box>
+          <ArtistImages />
+        </Box>
+      </Flex>
+
       <Box>
         <ButtonGroup m={2}>
           <Link as={ReachLink} to={`/requests/${artist._id}/create`}>
