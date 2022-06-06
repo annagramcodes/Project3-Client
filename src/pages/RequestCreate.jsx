@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import {
   Radio,
@@ -21,6 +21,9 @@ import { useForm } from "react-hook-form";
 // import "react-calendar/dist/Calendar.css";
 
 function RequestCreate() {
+  const { artistId } = useParams();
+  console.log(artistId);
+
   const navigate = useNavigate();
   //const [value, onChange] = useState(new Date());
   const [isUploading, setIsUploading] = useState(false);
@@ -101,8 +104,10 @@ function RequestCreate() {
       description,
       imagesUrl,
       budget,
+      artistId,
       appointmentDate,
     };
+    console.log(body);
 
     const getToken = localStorage.getItem("authToken");
     axios

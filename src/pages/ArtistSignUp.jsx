@@ -32,6 +32,7 @@ function ArtistSignUp() {
       name,
       location,
       styles,
+      businessHours,
       // flashes: { price, size, estimatedTime, imageUrl },
       portfolioImages,
     } = data;
@@ -39,6 +40,7 @@ function ArtistSignUp() {
       name,
       location,
       styles,
+      businessHours,
       // flashes: { price, size, estimatedTime, imageUrl },
       portfolioImages,
     };
@@ -79,7 +81,7 @@ function ArtistSignUp() {
               type="text"
               {...register("businessHours", { required: true })}
             />
-            {errors.location && (
+            {errors.businessHours && (
               <FormErrorMessage>Required field.</FormErrorMessage>
             )}
           </FormControl>

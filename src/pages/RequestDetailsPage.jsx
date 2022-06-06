@@ -5,9 +5,6 @@ import { useParams } from "react-router-dom";
 function RequestDetailsPage() {
   const [requests, setRequests] = useState([]);
   const { requestId } = useParams();
-  //   const newDate = (dates) => {
-
-  //   };
 
   const getRequests = async () => {
     try {
@@ -21,13 +18,13 @@ function RequestDetailsPage() {
         }
       );
       setRequests(response.data);
-      JSON.stringify(requests.appointmentDate);
-      console.log(requests);
-      let day = requests.appointmentDate.substring(8, 10);
-      let month = requests.appointmentDate.substring(5, 7);
-      let year = requests.appointmentDate.substring(0, 4);
 
-      let date = new Date(year, month, day);
+      // JSON.stringify(requests.appointmentDate);
+      // let day = response.data.appointmentDate.substring(8, 10);
+      // let month = response.data.appointmentDate.substring(5, 7);
+      // let year = response.data.appointmentDate.substring(0, 4);
+
+      // let date = new Date(year, month, day);
       //   let shortMonth = date.toLocaleString("en-us", { month: "short" });
 
       //   let dayOfWeekDig = date.getDay();
@@ -53,13 +50,14 @@ function RequestDetailsPage() {
               {dayOfWeekName + ", " + day + " " + shortMonth + " " + year}
             </p> */}
             <p className="time-info">
-              {JSON.stringify(requests.appointmentDate).substring(11, 13) +
-                ":" +
+              {JSON.stringify(requests.appointmentDate).substring(11, 13)}
+              {/* {JSON.stringify(requests.appointmentDate).substring(11, 13)} */}
+              {/* ":" +
                 requests.appointmentDate.substring(14, 16) +
                 "-" +
                 requests.appointmentDate.substring(17, 19) +
                 ":" +
-                requests.appointmentDate.substring(20, 22)}
+                requests.appointmentDate.substring(20, 22)} */}
             </p>
           </div>
         </div>

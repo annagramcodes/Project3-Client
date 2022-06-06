@@ -98,7 +98,7 @@ function App() {
             }
           />
           <Route
-            path="/requests/create"
+            path="/requests/:artistId/create"
             element={
               <IsPrivate>
                 <RequestCreate />
