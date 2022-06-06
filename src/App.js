@@ -17,6 +17,8 @@ import ArtistDashboard from "./pages/ArtistDashboard";
 import ArtistPage from "./pages/ArtistPage";
 import EditArtist from "./pages/EditArtist";
 import Dashboard from "./components/Dashboard";
+import RequestCreate from "./pages/RequestCreate";
+import RequestDetailsPage from "./pages/RequestDetailsPage";
 
 function App() {
   return (
@@ -92,6 +94,22 @@ function App() {
             element={
               <IsPrivate>
                 <RequestPage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/requests/create"
+            element={
+              <IsPrivate>
+                <RequestCreate />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/requests/:requestId"
+            element={
+              <IsPrivate>
+                <RequestDetailsPage />
               </IsPrivate>
             }
           />
