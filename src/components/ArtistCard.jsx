@@ -19,19 +19,19 @@ function ArtistCard(props) {
         my={6}
         boxShadow="base"
         textAlign="left"
-        rounded="md"
-        w="300px"
-        minHeight="380px"
+        borderRadius="3xl"
+        w="330px"
+        minHeight="400px"
       >
         <Image
-          mb={3}
-          w="300px"
-          h="200px"
+          w="330px"
+          borderRadius="1.5rem 1.5rem 0 0"
+          h="180px"
           objectFit="cover"
           src={artist.portfolioImages[0]}
           alt=""
         />
-        <Flex px={4} align="center" gap={3}>
+        <Flex py={4} px={4} align="center" gap={3}>
           <Image
             borderRadius="full"
             boxSize="50px"
@@ -39,36 +39,30 @@ function ArtistCard(props) {
             src={artist.owner.imageUrl}
             alt=""
           />
-          <Box pb={4}>
-            <Heading fontSize={{ base: "22px" }} color="gray.600" as="h2">
+          <Box>
+            <Heading fontSize="xl" color="gray.700" as="h2">
               {artist.name}
             </Heading>
             <Text>{artist.location}</Text>
           </Box>
         </Flex>
-        <Flex
-          px={2}
-          py={4}
-          gap={1}
-          borderTop="1px"
-          borderColor="gray.200"
-          flexWrap="wrap"
-        >
-          <Heading color="gray.700" as="h6" py={1} fontSize="sm">
+        <Box pt={2} borderTop="1px" borderColor="gray.200">
+          <Heading pt={2} pb={1} px={4} color="gray.600" as="h6" fontSize="lg">
             Styles
           </Heading>
-
-          {artist.styles.map((style) => (
-            <Tag
-              size="lg"
-              borderRadius="full"
-              variant="outline"
-              colorScheme="gray"
-            >
-              <TagLabel color="gray.600">{style}</TagLabel>
-            </Tag>
-          ))}
-        </Flex>
+          <Flex px={4} py={3} gap={2} flexWrap="wrap">
+            {artist.styles.map((style) => (
+              <Tag
+                size="lg"
+                borderRadius="full"
+                variant="outline"
+                color="gray.100"
+              >
+                <TagLabel color="gray.500">{style}</TagLabel>
+              </Tag>
+            ))}
+          </Flex>
+        </Box>
       </Box>
     </Link>
   );
