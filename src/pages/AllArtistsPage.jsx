@@ -19,6 +19,7 @@ function AllArtistsPage() {
         }
       );
       setArtist(response.data);
+      setFilteredArtist(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -27,6 +28,7 @@ function AllArtistsPage() {
   useEffect(() => {
     allArtists();
   }, []);
+  console.log(artist);
 
   const filterArtist = (e) => {
     let filteredArtist = artist.filter((artist) =>
