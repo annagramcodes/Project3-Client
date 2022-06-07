@@ -5,6 +5,7 @@ import ArtistSearch from "../components/ArtistSearch";
 
 function AllArtistsPage() {
   const [artist, setArtist] = useState([]);
+  const [filteredArtist, setFilteredArtist] = useState([]);
 
   const allArtists = async () => {
     try {
@@ -23,36 +24,26 @@ function AllArtistsPage() {
     }
   };
 
-  const searchArtist = async (query) => {
-    try {
-      const getToken = localStorage.getItem("authToken");
-      let response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/artist/search?q=${query}`,
-        {
-          headers: {
-            Authorization: `Bearer ${getToken}`,
-          },
-        }
-      );
-      console.log(query);
-      setArtist(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     allArtists();
   }, []);
 
+  const filterArtist = (e) => {
+    let filteredArtist = artist.filter((artist) =>
+      artist.styles.includes(e.target.value)
+    );
+    setFilteredArtist(filteredArtist);
+  };
+
   return (
     <div className="AllArtistPage">
-      <ArtistSearch searchArtist={searchArtist} />
-      {artist.map((artists) => {
+      <ArtistSearch filteredArtist={filterArtist} />
+      {filteredArtist.map((artists) => {
         return (
           <div key={artists._id}>
             <Link to={`/artist/${artists._id}`}>
               <p>{artists.name}</p>
+              <p>{artists.styles}</p>
             </Link>
           </div>
         );
