@@ -49,11 +49,18 @@ function AllArtistsPage() {
         </Text>
         <ArtistSearch filteredArtist={filterArtist} />
       </Container>
-      <SimpleGrid mx={20} my={10} columns={4} spacing={10}>
+      <Flex
+        flexDirection={{ base: "column", md: "row" }}
+        justifyContent="center"
+        alignItems="center"
+        mx={{ base: 2, md: 20 }}
+        my={{ base: 6, md: 10 }}
+        gap={{ base: "30px", md: "70px" }}
+      >
         {filteredArtist.map((artists) => {
           return <ArtistCard key={artist._id} artist={artists} />;
         })}
-      </SimpleGrid>
+      </Flex>
     </div>
   );
 }

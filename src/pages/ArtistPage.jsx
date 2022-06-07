@@ -22,7 +22,7 @@ function ArtistPage() {
   const { apiClient } = useAxios();
   const { user } = useContext(AuthContext);
 
-  const getArtist = async () => {
+  const getArtist = () => {
     apiClient.get(`/api/artist/${artistId}`).then((response) => {
       setArtist(response.data);
     });
