@@ -16,6 +16,7 @@ import { Link as ReachLink } from "react-router-dom";
 function ArtistContent(props) {
   const { artist, children } = props;
   const { user } = useContext(AuthContext);
+
   return (
     <Box boxShadow="base" textAlign="left" p="6" rounded="md">
       <Flex
