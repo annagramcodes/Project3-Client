@@ -42,7 +42,6 @@ function ArtistDashboard() {
   useEffect(() => {
     apiClient.get(`/api/artist/byUser/${user._id}`).then((response) => {
       setArtist(response.data);
-      console.log(response.data);
     });
   }, []);
 
