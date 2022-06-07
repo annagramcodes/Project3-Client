@@ -3,13 +3,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import {
-  Container,
-  Heading,
-  FormLabel,
+  Button,
   Input,
   FormControl,
-  Button,
+  FormLabel,
+  Container,
+  Box,
+  Heading,
 } from "@chakra-ui/react";
+import { useDropzone } from "react-dropzone";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function EditProfilePage() {
   const [username, setUsername] = useState("");
@@ -20,6 +24,14 @@ function EditProfilePage() {
   const { userId } = useParams();
   const navigate = useNavigate();
   const { authenticateUser, logoutUser, storeToken } = useContext(AuthContext);
+
+  const successHandle = () => {
+    toast.success("Yay", {
+      position: "top-center",
+      autoClose: 1000,
+      closeOnClick: true,
+    });
+  };
 
   const getUser = async () => {
     try {
@@ -66,11 +78,40 @@ function EditProfilePage() {
   const handleEmail = (e) => setEmail(e.target.value);
   const handleImageUrl = (e) => setImageUrl(e.target.value);
 
-  const handleFileUpload = (e) => {
+  // const handleFileUpload = (e) => {
+  //   setIsUploading(true);
+  //   const uploadData = new FormData();
+
+  //   uploadData.append("imageUrl", e.target.files[0]);
+
+  //   axios
+  //     .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
+  //     .then((response) => {
+  //       setIsUploading(false);
+  //       setImageUrl(response.data.fileUrl);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  // const acceptedFileItems = acceptedFiles.map((file) => (
+  //   <li key={file.path}>
+  //     {file.path} - {file.size} bytes
+  //   </li>
+  // ));
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (isUploading) {
+  //     alert("Image is uploading");
+  //     return;
+  //   }
+
+  const onDrop = async (droppedFiles) => {
     setIsUploading(true);
+    const [file] = droppedFiles;
     const uploadData = new FormData();
 
-    uploadData.append("imageUrl", e.target.files[0]);
+    uploadData.append("imageUrl", file);
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
@@ -80,13 +121,23 @@ function EditProfilePage() {
       })
       .catch((err) => console.log(err));
   };
+  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
+    onDrop,
+  });
+
+  const acceptedFileItems = acceptedFiles.map((file) => (
+    <li key={file.path}>
+      {file.path} - {file.size} bytes
+    </li>
+  ));
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isUploading) {
-      alert("Image is uploading");
+      successHandle();
       return;
     }
+
     const body = { username, email, imageUrl };
 
     const getToken = localStorage.getItem("authToken");
@@ -132,7 +183,13 @@ function EditProfilePage() {
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="image">Upload a Photo:</FormLabel>
-          <input type="file" onChange={(e) => handleFileUpload(e)} />
+          <Box p={5} bg="gray.100" m={4}>
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              <p>Drag 'n' drop a file here, or click to select a file</p>
+              <ul>{acceptedFileItems}</ul>
+            </div>
+          </Box>
         </FormControl>
         <Button my={4} type="submit">
           Edit Profile
@@ -141,6 +198,7 @@ function EditProfilePage() {
       <Button my={2} onClick={deleteUser}>
         Delete Profile
       </Button>
+      <ToastContainer />
     </Container>
   );
 }

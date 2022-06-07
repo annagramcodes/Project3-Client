@@ -18,7 +18,6 @@ function ArtistSearch(props) {
     { label: "surrealism" },
     { label: "lettering" },
     { label: "watercolor" },
-    { label: "geometric" },
     { label: "other" },
   ];
 
