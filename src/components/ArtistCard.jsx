@@ -46,11 +46,11 @@ function ArtistCard(props) {
             <Text>{artist.location}</Text>
           </Box>
         </Flex>
-        <Box pt={2} borderTop="1px" borderColor="gray.200">
-          <Heading pt={2} pb={1} px={4} color="gray.600" as="h6" fontSize="lg">
+        <Box mx={4} pt={2} borderTop="1px" borderColor="gray.200">
+          <Heading pt={2} pb={1} color="gray.600" as="h6" fontSize="lg">
             Styles
           </Heading>
-          <Flex px={4} py={3} gap={2} flexWrap="wrap">
+          <Flex py={3} gap={2} flexWrap="wrap">
             {artist.styles.map((style) => (
               <Tag
                 size="lg"

@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link as ReachLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+
 import {
   Input,
   FormControl,
@@ -8,6 +10,11 @@ import {
   VStack,
   Button,
   Container,
+  Link,
+  Text,
+  Flex,
+  Heading,
+  Box,
 } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -42,38 +49,73 @@ function LoginPage() {
   };
 
   return (
-    <Container className="LoginPage">
-      <h1>Login</h1>
+    // <Box
+
+    //   bgSize="100%"
+    //   bgImage="url('/images/kristian-angelo-xyJZvUL4_TY-unsplash.jpg')"
+    // >
+    <Flex
+      // pt={20}
+      flexGrow={1}
+      justify="center"
+      alignItems="center"
+      className="LoginPage"
+      bgSize="100%"
+      bgImage="url('/images/kristian-angelo-xyJZvUL4_TY-unsplash.jpg')"
+    >
       <VStack>
-        <form onSubmit={handleSubmit}>
-          <FormControl>
-            <FormLabel htmlFor="email">Email</FormLabel>
-            <Input
-              type="text"
-              name="email"
-              value={email}
-              onChange={handleEmail}
-            />
-          </FormControl>
+        <Heading
+          color="whiteAlpha.900"
+          as="h1"
+          fontWeight="black"
+          textTransform="uppercase"
+          mb={4}
+        >
+          Login
+        </Heading>
+        <Box p={8} w="xs" bg="white" rounded="lg">
+          <form onSubmit={handleSubmit}>
+            <FormControl py={3}>
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <Input
+                type="text"
+                name="email"
+                value={email}
+                onChange={handleEmail}
+              />
+            </FormControl>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <Input
+                type="password"
+                name="password"
+                value={password}
+                onChange={handlePassword}
+              />
+            </FormControl>
+            <Button
+              bg="gray.900"
+              colorScheme="gray"
+              color="white"
+              px={16}
+              my={4}
+              type="submit"
+            >
+              Login
+            </Button>
+          </form>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </Box>
 
-          <FormControl>
-            <FormLabel htmlFor="password">Password</FormLabel>
-            <Input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePassword}
-            />
-          </FormControl>
-
-          <Button type="submit">Login</Button>
-        </form>
-
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <p>Don't have an account?</p>
-        <Link to="/signup"> Sign up</Link>
+        <Text color="white" fontSize="sm">
+          Don't have an account?{" "}
+          <ReachLink to="/signup">
+            <Link fontWeight="semibold">Sign up</Link>
+          </ReachLink>
+        </Text>
       </VStack>
-    </Container>
+    </Flex>
+    // </Box>
   );
 }
 

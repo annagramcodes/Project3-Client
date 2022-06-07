@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 import RequestPage from "./pages/RequestPage";
 import TattoosPage from "./pages/TattoosPage";
 import StylesPage from "./pages/StylesPage";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Flex } from "@chakra-ui/react";
 import EditProfilePage from "./pages/EditProfilePage";
 import ArtistSignUp from "./pages/ArtistSignUp";
 import ArtistDashboard from "./pages/ArtistDashboard";
@@ -24,7 +24,7 @@ import AllArtistsPage from "./pages/AllArtistsPage";
 function App() {
   return (
     <ChakraProvider>
-      <div className="App">
+      <Flex minH="100vh" flexDirection="column" className="App">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -140,7 +140,7 @@ function App() {
             }
           />
         </Routes>
-      </div>
+      </Flex>
     </ChakraProvider>
   );
 }

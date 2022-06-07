@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Link as ReachLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import {
   Radio,
@@ -11,6 +12,12 @@ import {
   HStack,
   FormErrorMessage,
   Container,
+  Box,
+  Flex,
+  VStack,
+  Heading,
+  Text,
+  Link,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -47,62 +54,95 @@ function SignupPage() {
   };
 
   return (
-    <Container maxW="md">
-      <div className="SignupPage">
-        <h1>Sign Up</h1>
+    <Flex
+      // pt={20}
+      flexGrow={1}
+      justify="center"
+      alignItems="center"
+      className="LoginPage"
+      bgSize="100%"
+      bgImage="url('/images/eugene-chystiakov-w8fulqCkj8w-unsplash.jpg')"
+    >
+      <VStack>
+        <Heading
+          color="white"
+          as="h1"
+          fontWeight="black"
+          textTransform="uppercase"
+          mb={4}
+        >
+          Sign Up
+        </Heading>
+        <Box p={8} w="xs" bg="white" rounded="lg">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <FormControl pb={3} isInvalid={errors.username}>
+              <FormLabel htmlFor="username">Name</FormLabel>
+              <Input
+                type="text"
+                {...register("username", { required: true })}
+              />
+              {errors.username && (
+                <FormErrorMessage>Required field.</FormErrorMessage>
+              )}
+            </FormControl>
+            <FormControl isInvalid={errors.email}>
+              <FormLabel htmlFor="email">Email</FormLabel>
+              <Input type="text" {...register("email", { required: true })} />
+            </FormControl>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl isInvalid={errors.username}>
-            <FormLabel htmlFor="username">Name</FormLabel>
-            <Input type="text" {...register("username", { required: true })} />
-            {errors.username && (
-              <FormErrorMessage>Required field.</FormErrorMessage>
-            )}
-          </FormControl>
-          <FormControl isInvalid={errors.email}>
-            <FormLabel htmlFor="email">Email</FormLabel>
-            <Input type="text" {...register("email", { required: true })} />
-          </FormControl>
+            <FormControl pb={3} isInvalid={errors.password}>
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <Input
+                type="password"
+                {...register("password", { required: true })}
+              />
+            </FormControl>
+            <FormControl isInvalid={errors.profileType}>
+              <FormLabel htmlFor="client">
+                Are you a client or artist?
+              </FormLabel>
+              <RadioGroup pb={3}>
+                <HStack spacing="24px">
+                  <Radio
+                    value="client"
+                    {...register("profileType", { required: true })}
+                  >
+                    Client
+                  </Radio>
+                  <Radio
+                    value="artist"
+                    {...register("profileType", { required: true })}
+                  >
+                    Artist
+                  </Radio>
+                </HStack>
+              </RadioGroup>
+              {errors.profileType && (
+                <FormErrorMessage>Required field.</FormErrorMessage>
+              )}
+            </FormControl>
+            <Button
+              bg="gray.900"
+              colorScheme="gray"
+              color="white"
+              px={16}
+              my={4}
+              type="submit"
+            >
+              Sign Up
+            </Button>
+          </form>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </Box>
 
-          <FormControl isInvalid={errors.password}>
-            <FormLabel htmlFor="password">Password</FormLabel>
-            <Input
-              type="password"
-              {...register("password", { required: true })}
-            />
-          </FormControl>
-          <FormControl isInvalid={errors.profileType}>
-            <FormLabel htmlFor="client">Are you an Artist or Client?</FormLabel>
-            <RadioGroup>
-              <HStack spacing="24px">
-                <Radio
-                  value="client"
-                  {...register("profileType", { required: true })}
-                >
-                  Client
-                </Radio>
-                <Radio
-                  value="artist"
-                  {...register("profileType", { required: true })}
-                >
-                  Artist
-                </Radio>
-              </HStack>
-            </RadioGroup>
-            {errors.profileType && (
-              <FormErrorMessage>Required field.</FormErrorMessage>
-            )}
-          </FormControl>
-          <Button type="submit">Sign Up</Button>
-        </form>
-
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <p>Already have an account?</p>
-        <Link to="/login">
-          <Button>Login</Button>
-        </Link>
-      </div>
-    </Container>
+        <Text color="white" fontSize="sm">
+          Already have an account?{" "}
+          <ReachLink to="/login">
+            <Link fontWeight="semibold">Login</Link>
+          </ReachLink>
+        </Text>
+      </VStack>
+    </Flex>
   );
 }
 
