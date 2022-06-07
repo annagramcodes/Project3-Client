@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Box } from "@chakra-ui/react";
 
 function RequestDetailsPage() {
   const [requests, setRequests] = useState([]);
