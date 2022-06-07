@@ -1,17 +1,21 @@
 import React from "react";
 import { Link as ReachLink } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Image, Link, Box, Heading, Button, Container } from "@chakra-ui/react";
 import useAxios from "../utils/axios.hook";
+import RequestContainer from "../components/RequestContainer";
 
 function ProfilePage() {
-  const { isLoggedIn, user, logoutUser } = useContext(AuthContext);
+  const { isLoggedIn, user } = useContext(AuthContext);
   const { apiClient } = useAxios();
+
+  const [userData, setUserData] = useState();
 
   useEffect(() => {
     apiClient.get(`/api/profile/${user._id}`).then((response) => {
-      console.log(response.data);
+      setUserData(response.data);
+      console.log(userData);
     });
   }, []);
 
@@ -43,6 +47,7 @@ function ProfilePage() {
               alt=""
             />
           </Box>
+          {/* <RequestContainer requests={userData.requestsMade} /> */}
         </Container>
       )}
     </>
