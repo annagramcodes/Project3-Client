@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ArtistSearch from "../components/ArtistSearch";
+import ArtistCard from "../components/ArtistCard";
+import { Container, Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 
 function AllArtistsPage() {
   const [artist, setArtist] = useState([]);
@@ -28,7 +30,6 @@ function AllArtistsPage() {
   useEffect(() => {
     allArtists();
   }, []);
-  console.log(artist);
 
   const filterArtist = (e) => {
     let filteredArtist = artist.filter((artist) =>
@@ -39,17 +40,20 @@ function AllArtistsPage() {
 
   return (
     <div className="AllArtistPage">
-      <ArtistSearch filteredArtist={filterArtist} />
-      {filteredArtist.map((artists) => {
-        return (
-          <div key={artists._id}>
-            <Link to={`/artist/${artists._id}`}>
-              <p>{artists.name}</p>
-              <p>{artists.styles}</p>
-            </Link>
-          </div>
-        );
-      })}
+      <Container maxW="container.md">
+        <Heading fontSize="6xl" mt={{ sm: 4, md: "6" }} mb={2} as="h1">
+          Explore
+        </Heading>
+        <Text mb={4} fontSize="20px">
+          Browse artists by you favorite style
+        </Text>
+        <ArtistSearch filteredArtist={filterArtist} />
+      </Container>
+      <SimpleGrid mx={20} my={10} columns={4} spacing={10}>
+        {filteredArtist.map((artists) => {
+          return <ArtistCard key={artist._id} artist={artists} />;
+        })}
+      </SimpleGrid>
     </div>
   );
 }

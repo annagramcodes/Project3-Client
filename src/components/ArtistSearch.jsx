@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@chakra-ui/react";
+import { Button, Tag, TagLabel } from "@chakra-ui/react";
 
 function ArtistSearch(props) {
   const { filteredArtist } = props;
@@ -22,16 +22,21 @@ function ArtistSearch(props) {
     { label: "other" },
   ];
 
-  //   const handleSearch = (e) => {
-  //     setSearch(e.target.value);
-  //     filteredArtist(e.target.value);
-  //   };
-
   return (
     <>
       {stylesMatrix.map((styles) => {
         return (
-          <Button value={styles.label} onClick={filteredArtist}>
+          <Button
+            colorScheme="gray"
+            mx={1.5}
+            my={1.5}
+            size="md"
+            borderRadius="full"
+            variant="outline"
+            value={styles.label}
+            onClick={filteredArtist}
+            color="gray.600"
+          >
             {styles.label}
           </Button>
         );
