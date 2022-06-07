@@ -14,6 +14,7 @@ import ArtistContent from "../components/ArtistContent";
 import ArtistImages from "../components/ArtistImages";
 import { AuthContext } from "../context/auth.context";
 import useAxios from "../utils/axios.hook";
+import RequestContainer from "../components/RequestContainer";
 
 function ArtistDashboard() {
   const [artist, setArtist] = useState();
@@ -41,6 +42,7 @@ function ArtistDashboard() {
   useEffect(() => {
     apiClient.get(`/api/artist/byUser/${user._id}`).then((response) => {
       setArtist(response.data);
+      console.log(response.data);
     });
   }, []);
 
@@ -77,6 +79,7 @@ function ArtistDashboard() {
       <Button colorScheme="pink" onClick={saveImages}>
         Save Collection
       </Button>
+      <RequestContainer requests={artist.requestsReceived} />
     </Container>
   );
 }

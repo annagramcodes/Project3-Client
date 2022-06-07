@@ -63,7 +63,7 @@ function ArtistContent(props) {
         <Box>
           <Image
             borderRadius="full"
-            boxSize="150px"
+            w="150px"
             objectFit="cover"
             src={user.imageUrl}
             alt=""
