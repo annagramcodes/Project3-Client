@@ -19,6 +19,7 @@ import EditArtist from "./pages/EditArtist";
 import Dashboard from "./components/Dashboard";
 import RequestCreate from "./pages/RequestCreate";
 import RequestDetailsPage from "./pages/RequestDetailsPage";
+import AllArtistsPage from "./pages/AllArtistsPage";
 
 function App() {
   return (
@@ -59,6 +60,15 @@ function App() {
             element={
               <IsPrivate>
                 <ArtistSignUp />
+              </IsPrivate>
+            }
+          />
+
+          <Route
+            path="/artist"
+            element={
+              <IsPrivate>
+                <AllArtistsPage />
               </IsPrivate>
             }
           />

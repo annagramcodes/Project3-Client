@@ -16,6 +16,8 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // import Calendar from "react-calendar";
 // import "react-calendar/dist/Calendar.css";
@@ -31,9 +33,17 @@ function RequestCreate() {
   const [appointmentDate, setAppointmentDate] = useState(null);
   const [description, setDescription] = useState("");
   const [size, setSize] = useState("");
-  const [color, setColor] = useState(true);
+  const [color, setColor] = useState(false);
   const [budget, setBudget] = useState(0);
   const [imagesUrl, setImagesUrl] = useState([]);
+
+  const successHandle = () => {
+    toast.success("Yay", {
+      position: "top-center",
+      autoClose: 1000,
+      closeOnClick: true,
+    });
+  };
 
   const handlePlacement = (e) => setPlacement(e.target.value);
   const handleAppointmentDate = (e) => {
@@ -75,7 +85,6 @@ function RequestCreate() {
       .then((response) => {
         setIsUploading(false);
         setImagesUrl(response.data.newPhotos);
-        console.log(response.data.newPhotos);
       })
       .catch((err) => console.log(err));
   };
@@ -93,7 +102,7 @@ function RequestCreate() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isUploading) {
-      alert("Images are uploading");
+      successHandle();
       return;
     }
 
@@ -121,9 +130,10 @@ function RequestCreate() {
         setDescription("");
         setAppointmentDate("");
         setSize("");
-        setColor(true);
+        setColor(false);
         setBudget(0);
         setImagesUrl("");
+
         navigate(`/requests`);
       })
       .catch((err) => console.log(err));
@@ -206,15 +216,17 @@ function RequestCreate() {
             <FormLabel htmlFor="color">
               Is the tattoo coloured or black and white?
             </FormLabel>
-            <RadioGroup colorScheme="red">
+            <RadioGroup>
               <HStack spacing="24px">
                 <Radio
+                  colorScheme="red"
                   value="coloured"
                   {...register("color", { required: true })}
                 >
                   Coloured
                 </Radio>
                 <Radio
+                  colorScheme="blue"
                   value="blackandwhite"
                   {...register("color", { required: true })}
                 >
@@ -254,6 +266,7 @@ function RequestCreate() {
 
         {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
       </div>
+      <ToastContainer />
     </Container>
   );
 }

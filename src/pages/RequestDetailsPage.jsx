@@ -18,18 +18,6 @@ function RequestDetailsPage() {
         }
       );
       setRequests(response.data);
-
-      // JSON.stringify(requests.appointmentDate);
-      // let day = response.data.appointmentDate.substring(8, 10);
-      // let month = response.data.appointmentDate.substring(5, 7);
-      // let year = response.data.appointmentDate.substring(0, 4);
-
-      // let date = new Date(year, month, day);
-      //   let shortMonth = date.toLocaleString("en-us", { month: "short" });
-
-      //   let dayOfWeekDig = date.getDay();
-
-      //   let dayOfWeekName = date.toLocaleString("default", { weekday: "long" });
     } catch (error) {
       console.log(error);
     }
@@ -41,27 +29,7 @@ function RequestDetailsPage() {
 
   return (
     <div>
-      <img src={requests.image} alt="requests-img" className="cover-image" />
-      <section className="section-info">
-        <p>{requests.description}</p>
-        <div className="div-date">
-          <div className="div-p">
-            {/* <p className="date-info">
-              {dayOfWeekName + ", " + day + " " + shortMonth + " " + year}
-            </p> */}
-            <p className="time-info">
-              {JSON.stringify(requests.appointmentDate).substring(11, 13)}
-              {/* {JSON.stringify(requests.appointmentDate).substring(11, 13)} */}
-              {/* ":" +
-                requests.appointmentDate.substring(14, 16) +
-                "-" +
-                requests.appointmentDate.substring(17, 19) +
-                ":" +
-                requests.appointmentDate.substring(20, 22)} */}
-            </p>
-          </div>
-        </div>
-      </section>
+      <p>{requests.description}</p>
     </div>
   );
 }

@@ -22,6 +22,12 @@ function Navbar() {
             <Button variant="link">Profile</Button>
           </ReachLink>
 
+          {user.profileType === "client" && (
+            <ReachLink to="/artist">
+              <Button variant="link"> Find an Artist</Button>
+            </ReachLink>
+          )}
+
           {user.profileType === "artist" && (
             <ReachLink to="/dashboard">
               <Button variant="link"> Dashboard</Button>

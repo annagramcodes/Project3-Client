@@ -37,7 +37,9 @@ function RequestPage() {
               <p>{request.budget}</p>
               <p>{request.description}</p>
               <p>{request.color ? "Color" : "Black and White"}</p>
-              <img src={request.imagesUrl[0]} alt="" />
+              {request.imagesUrl.map((imageUrl) => (
+                <img src={imageUrl} alt="" />
+              ))}
               <p>{new Date(request.appointmentDate).toLocaleString("en-US")}</p>
             </Link>
           </div>
