@@ -55,7 +55,6 @@ function SignupPage() {
 
   return (
     <Flex
-      // pt={20}
       flexGrow={1}
       justify="center"
       alignItems="center"
