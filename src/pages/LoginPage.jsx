@@ -65,7 +65,7 @@ function LoginPage() {
     >
       <VStack>
         <Heading
-          color="whiteAlpha.900"
+          color="white"
           as="h1"
           fontWeight="black"
           textTransform="uppercase"
@@ -107,7 +107,7 @@ function LoginPage() {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </Box>
 
-        <Text color="white" fontSize="sm">
+        <Text color="white" fontSize="md">
           Don't have an account?{" "}
           <ReachLink to="/signup">
             <Link fontWeight="semibold">Sign up</Link>

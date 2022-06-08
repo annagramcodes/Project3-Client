@@ -134,7 +134,7 @@ function SignupPage() {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </Box>
 
-        <Text color="white" fontSize="sm">
+        <Text color="white" fontSize="md">
           Already have an account?{" "}
           <ReachLink to="/login">
             <Link fontWeight="semibold">Login</Link>

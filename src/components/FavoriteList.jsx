@@ -14,7 +14,7 @@ function FavoriteList(props) {
             as="h4"
             fontSize={{ sm: "16px", md: "18px" }}
           >
-            Your Favorites
+            Favorite artists
           </Heading>
           {favourites.map((favourite) => {
             return (
