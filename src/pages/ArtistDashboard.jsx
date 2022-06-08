@@ -15,6 +15,8 @@ import ArtistImages from "../components/ArtistImages";
 import { AuthContext } from "../context/auth.context";
 import useAxios from "../utils/axios.hook";
 import RequestContainer from "../components/RequestContainer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ArtistDashboard() {
   const [artist, setArtist] = useState();
@@ -22,6 +24,7 @@ function ArtistDashboard() {
   const { apiClient } = useAxios();
   const [isSaving, setIsSaving] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [newRequest, setNewRequest] = useState();
 
   const onDrop = async (droppedFiles) => {
     setIsUploading(true);
@@ -43,10 +46,18 @@ function ArtistDashboard() {
     onDrop,
   });
 
+  const successHandle = () => {
+    toast.success("Yay", {
+      position: "top-center",
+      autoClose: 1000,
+      closeOnClick: true,
+    });
+  };
+
   useEffect(() => {
     apiClient.get(`/api/artist/byUser/${user._id}`).then((response) => {
-      console.log(response.data);
       setArtist(response.data);
+      successHandle();
     });
   }, []);
 
