@@ -5,6 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import { Image, Link, Box, Heading, Button, Container } from "@chakra-ui/react";
 import useAxios from "../utils/axios.hook";
 import RequestContainer from "../components/RequestContainer";
+import FavoriteList from "../components/FavoriteList";
 
 function ProfilePage() {
   const { isLoggedIn, user } = useContext(AuthContext);
@@ -51,6 +52,9 @@ function ProfilePage() {
           </Box>
           {userData && userData.requestsMade.length > 0 ? (
             <RequestContainer requests={userData.requestsMade} />
+          ) : null}
+          {userData && userData.favoriteArtists.length > 0 ? (
+            <FavoriteList favourites={userData.favoriteArtists} />
           ) : null}
         </Container>
       )}
