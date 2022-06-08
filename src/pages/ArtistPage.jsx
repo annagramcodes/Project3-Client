@@ -55,7 +55,7 @@ function ArtistPage() {
               <Link as={ReachLink} to={`/requests/${artist._id}/create`}>
                 <Button colorScheme="pink"> Book</Button>
               </Link>
-              <AddFavorite artist={artist} />
+              <AddFavorite artist={artist} user={userData} />
             </ButtonGroup>
           </Flex>
         </ArtistContent>
