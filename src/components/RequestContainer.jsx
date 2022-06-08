@@ -3,7 +3,6 @@ import { Box, Heading, Text } from "@chakra-ui/react";
 
 function RequestContainer(props) {
   const { requests } = props;
-  console.log(requests);
 
   return (
     <Box mt={6} boxShadow="base" textAlign="left" p="6" rounded="md">
