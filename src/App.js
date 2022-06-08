@@ -133,14 +133,6 @@ function App() {
             }
           />
           <Route
-            path="/tattoos"
-            element={
-              <IsPrivate>
-                <TattoosPage />
-              </IsPrivate>
-            }
-          />
-          <Route
             path="/styles"
             element={
               <IsPrivate>

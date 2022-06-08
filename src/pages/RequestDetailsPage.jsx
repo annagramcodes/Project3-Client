@@ -31,6 +31,7 @@ function RequestDetailsPage() {
   return (
     <div>
       <p>{requests.description}</p>
+      <p>{requests.placement}</p>
     </div>
   );
 }
