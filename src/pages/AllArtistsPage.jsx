@@ -37,31 +37,37 @@ function AllArtistsPage() {
     );
     setFilteredArtist(filteredArtist);
   };
+  console.log(filteredArtist);
 
   return (
-    <div className="AllArtistPage">
-      <Container maxW="container.md">
-        <Heading fontSize="6xl" mt={{ sm: 4, md: "6" }} mb={2} as="h1">
-          Explore
-        </Heading>
-        <Text mb={4} fontSize="20px">
-          Browse artists by you favorite style
-        </Text>
-        <ArtistSearch filteredArtist={filterArtist} />
-      </Container>
-      <Flex
-        flexDirection={{ base: "column", md: "row" }}
-        justifyContent="center"
-        alignItems="center"
-        mx={{ base: 2, md: 20 }}
-        my={{ base: 6, md: 10 }}
-        gap={{ base: "30px", md: "70px" }}
-      >
-        {filteredArtist.map((artists) => {
-          return <ArtistCard key={artist._id} artist={artists} />;
-        })}
-      </Flex>
-    </div>
+    <>
+      {filteredArtist && (
+        <div className="AllArtistPage">
+          <Container maxW="container.md">
+            <Heading fontSize="6xl" mt={{ sm: 4, md: "6" }} mb={2} as="h1">
+              Explore
+            </Heading>
+            <Text mb={4} fontSize="20px">
+              Browse artists by you favorite style
+            </Text>
+            <ArtistSearch filteredArtist={filterArtist} />
+          </Container>
+          <Flex
+            flexDirection={{ base: "column", md: "row" }}
+            justifyContent="center"
+            flexWrap="wrap"
+            alignItems="center"
+            mx={{ base: 2, md: 20 }}
+            my={{ base: 6, md: 10 }}
+            gap={{ base: "30px", md: "70px" }}
+          >
+            {filteredArtist.map((artists) => {
+              return <ArtistCard key={artist._id} artist={artists} />;
+            })}
+          </Flex>
+        </div>
+      )}
+    </>
   );
 }
 

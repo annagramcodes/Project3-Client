@@ -20,8 +20,8 @@ import axios from "axios";
 
 function LoginPage() {
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
 

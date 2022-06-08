@@ -27,11 +27,17 @@ function ArtistImages(props) {
   };
 
   return (
-    <SimpleGrid mb={5} columns={3} spacing={4}>
+    <SimpleGrid mb={5} columns={{ base: 1, md: 3 }} spacing={4}>
       {artist.portfolioImages.map((image, index) => {
         return (
           <ImageWrapper position="relative">
-            <Image boxSize="300px" objectFit="cover" alt="tattoo" src={image} />
+            <Image
+              boxSize="300px"
+              m="0"
+              objectFit="cover"
+              alt="tattoo"
+              src={image}
+            />
             <IconButton
               onClick={() => handleDelete(index)}
               position="absolute"

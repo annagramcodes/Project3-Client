@@ -1,7 +1,8 @@
+import { Box } from "@chakra-ui/react";
 import React from "react";
 
 function HomePage() {
-  return <div>HomePage</div>;
+  return <Box flexGrow={1}>HomePage</Box>;
 }
 
 export default HomePage;

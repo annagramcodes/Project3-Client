@@ -20,8 +20,11 @@ function ArtistDashboard() {
   const [artist, setArtist] = useState();
   const { user } = useContext(AuthContext);
   const { apiClient } = useAxios();
+  const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   const onDrop = async (droppedFiles) => {
+    setIsUploading(true);
     const [file] = droppedFiles;
     const uploadData = new FormData();
 
@@ -33,6 +36,7 @@ function ArtistDashboard() {
       ...artist,
       portfolioImages: [...artist.portfolioImages, response.data.fileUrl],
     }));
+    setIsUploading(false);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -41,13 +45,16 @@ function ArtistDashboard() {
 
   useEffect(() => {
     apiClient.get(`/api/artist/byUser/${user._id}`).then((response) => {
+      console.log(response.data);
       setArtist(response.data);
     });
   }, []);
 
   const saveImages = async () => {
+    setIsSaving(true);
     await apiClient.put(`/api/artist/${artist._id}`, artist);
     console.log("successfully saved artist", artist);
+    setIsSaving(false);
   };
 
   if (!artist) {
@@ -55,31 +62,44 @@ function ArtistDashboard() {
   }
 
   return (
-    <Container py={{ sm: 4, md: 10 }}>
-      <Box>
-        <ArtistContent artist={artist}>
-          <ReachLink to="/artist/edit">
-            <Button mt={6}>Edit</Button>
-          </ReachLink>{" "}
-        </ArtistContent>
-      </Box>
-      <Heading color="gray.600" my={10} as="h2">
-        Create your portfolio
-      </Heading>
-      {!!artist.portfolioImages.length && (
-        <ArtistImages artist={artist} setArtist={setArtist} />
-      )}
-      <Box h="80px" p={3} bg="white" border="1px dashed lightgrey" m={4}>
-        <div {...getRootProps()}>
-          <input {...getInputProps()} />
-          <Text pt={3}>Drag and drop your images here</Text>
-        </div>
-      </Box>
-      <Button colorScheme="pink" onClick={saveImages}>
-        Save Collection
-      </Button>
-      <RequestContainer requests={artist.requestsReceived} />
-    </Container>
+    <Box>
+      <Container maxW="container.lg" py={{ sm: 4, md: 10 }}>
+        <Box m="auto" w={{ base: "70%", md: "md" }}>
+          <ArtistContent artist={artist}>
+            <ReachLink to="/artist/edit">
+              <Button mt={6}>Edit</Button>
+            </ReachLink>{" "}
+          </ArtistContent>
+        </Box>
+        <Heading color="gray.600" my={10} as="h2">
+          Create your portfolio
+        </Heading>
+        {!!artist.portfolioImages.length && (
+          <ArtistImages artist={artist} setArtist={setArtist} />
+        )}
+        <Box
+          h={{ base: "100px", md: "100px" }}
+          w={{ base: "70%" }}
+          p={3}
+          bg="white"
+          border="1px dashed lightgrey"
+          m={4}
+        >
+          <div {...getRootProps()}>
+            <input {...getInputProps()} />
+            {isUploading ? (
+              <Spinner />
+            ) : (
+              <Text pt={6}>Drag and drop your images here</Text>
+            )}
+          </div>
+        </Box>
+        <Button isLoading={isSaving} colorScheme="pink" onClick={saveImages}>
+          Save Collection
+        </Button>
+        <RequestContainer requests={artist.requestsReceived} />
+      </Container>
+    </Box>
   );
 }
 

@@ -13,6 +13,7 @@ function Navbar() {
 
   return (
     <Flex
+      position="relative"
       boxShadow="md"
       px={12}
       py={2}

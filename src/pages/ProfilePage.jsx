@@ -14,13 +14,15 @@ function ProfilePage() {
 
   useEffect(() => {
     apiClient.get(`/api/profile/${user._id}`).then((response) => {
+      console.log(response.data);
       setUserData(response.data);
+
       console.log(userData);
     });
   }, []);
 
   return (
-    <>
+    <Box flexGrow={1}>
       {isLoggedIn && (
         <Container>
           <Box
@@ -47,10 +49,12 @@ function ProfilePage() {
               alt=""
             />
           </Box>
-          {/* <RequestContainer requests={userData.requestsMade} /> */}
+          {userData && userData.requestsMade.length > 0 ? (
+            <RequestContainer requests={userData.requestsMade} />
+          ) : null}
         </Container>
       )}
-    </>
+    </Box>
   );
 }
 

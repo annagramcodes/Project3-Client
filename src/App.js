@@ -1,4 +1,5 @@
 import "./App.css";
+import { useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import { Routes, Route } from "react-router-dom";
@@ -20,15 +21,23 @@ import Dashboard from "./components/Dashboard";
 import RequestCreate from "./pages/RequestCreate";
 import RequestDetailsPage from "./pages/RequestDetailsPage";
 import AllArtistsPage from "./pages/AllArtistsPage";
+import Footer from "./components/Footer";
 
 function App() {
+  const location = useLocation();
+
   return (
     <ChakraProvider>
-      <Flex minH="100vh" flexDirection="column" className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+      <Flex bg="gray.50" minH="100vh" flexDirection="column" className="App">
+        <>
+          {location.pathname === "/login" ||
+          location.pathname === "/signup-artist" ? null : (
+            <Navbar />
+          )}
+        </>
 
+        {/* <Navbar /> */}
+        <Routes>
           <Route
             path="/signup"
             element={
@@ -37,7 +46,16 @@ function App() {
               </IsAnon>
             }
           />
+          <Route
+            path="/signup-artist"
+            element={
+              <IsPrivate>
+                <ArtistSignUp />
+              </IsPrivate>
+            }
+          />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/profile"
             element={
@@ -51,15 +69,6 @@ function App() {
             element={
               <IsPrivate>
                 <EditProfilePage />
-              </IsPrivate>
-            }
-          />
-
-          <Route
-            path="/signup-artist"
-            element={
-              <IsPrivate>
-                <ArtistSignUp />
               </IsPrivate>
             }
           />
@@ -140,6 +149,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer />
       </Flex>
     </ChakraProvider>
   );
