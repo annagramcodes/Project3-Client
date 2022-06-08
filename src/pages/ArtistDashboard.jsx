@@ -7,6 +7,7 @@ import {
   Spinner,
   Heading,
 } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Link as ReachLink } from "react-router-dom";
@@ -63,7 +64,7 @@ function ArtistDashboard() {
 
   useEffect(() => {
     successHandle();
-  }, [newRequest]);
+  }, []);
 
   const saveImages = async () => {
     setIsSaving(true);
@@ -79,46 +80,127 @@ function ArtistDashboard() {
   return (
     <>
       {artist && (
-        <Box>
+        <Box
+          bg=" linear-gradient(180deg, rgba(252,245,233,0.1) 500px, rgba(255,255,255,1) 1000px), url('/images/annie-spratt-7Ajvv-KOi20-unsplash.jpg') no-repeat"
+          bgSize="100%"
+          bgColor="white"
+        >
           <Container maxW="container.lg" py={{ sm: 4, md: 10 }}>
-            <Box m="auto" w={{ base: "70%", md: "md" }}>
+            <Box m="auto" mb={10} w={{ base: "70%", md: "md" }}>
               <ArtistContent artist={artist}>
                 <ReachLink to="/artist/edit">
-                  <Button mt={6}>Edit</Button>
+                  <Button
+                    bg="gray.900"
+                    colorScheme="gray"
+                    color="white"
+                    px={16}
+                    my={4}
+                  >
+                    Edit
+                  </Button>
                 </ReachLink>{" "}
               </ArtistContent>
             </Box>
-            <Heading color="gray.600" my={10} as="h2">
-              Create your portfolio
-            </Heading>
-            {!!artist.portfolioImages.length && (
-              <ArtistImages artist={artist} setArtist={setArtist} />
-            )}
-            <Box
-              h={{ base: "100px", md: "100px" }}
-              w={{ base: "70%" }}
-              p={3}
+            <Tabs
+              boxShadow="base"
+              rounded="md"
               bg="white"
-              border="1px dashed lightgrey"
-              m={4}
+              isFitted
+              variant="enclosed"
             >
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {isUploading ? (
-                  <Spinner />
-                ) : (
-                  <Text pt={6}>Drag and drop your images here</Text>
-                )}
-              </div>
-            </Box>
-            <Button
-              isLoading={isSaving}
-              colorScheme="pink"
-              onClick={saveImages}
-            >
-              Save Collection
-            </Button>
-            <RequestContainer requests={artist.requestsReceived} />
+              <TabList>
+                <Tab
+                  fontWeight="bold"
+                  color="gray.600"
+                  _selected={{
+                    border: 0,
+                    borderBottom: "2px",
+                    borderColor: "gray.400",
+                  }}
+                >
+                  Portfolio
+                </Tab>
+                <Tab
+                  fontWeight="bold"
+                  color="gray.600"
+                  _selected={{
+                    border: 0,
+                    borderBottom: "2px",
+                    borderColor: "gray.400",
+                  }}
+                >
+                  Booking requests
+                </Tab>
+                <Tab
+                  fontWeight="bold"
+                  color="gray.600"
+                  _selected={{
+                    border: 0,
+                    borderBottom: "2px",
+                    borderColor: "gray.400",
+                  }}
+                >
+                  Flashes
+                </Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  <Heading
+                    color="gray.700"
+                    my={10}
+                    as="h2"
+                    fontSize="4xl"
+                    fontWeight="black"
+                  >
+                    Create your portfolio
+                  </Heading>
+                  {!!artist.portfolioImages.length && (
+                    <ArtistImages artist={artist} setArtist={setArtist} />
+                  )}
+                  <Box
+                    h={{ base: "100px", md: "150px" }}
+                    p={3}
+                    bg="white"
+                    border="1px dashed"
+                    borderColor="gray.400"
+                    m={4}
+                  >
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      {isUploading ? (
+                        <Spinner />
+                      ) : (
+                        <Text color="gray.500" pt={10}>
+                          Drag & drop your images here
+                        </Text>
+                      )}
+                    </div>
+                  </Box>
+                  <Button
+                    isLoading={isSaving}
+                    colorScheme="pink"
+                    onClick={saveImages}
+                  >
+                    Save Collection
+                  </Button>
+                </TabPanel>
+                <TabPanel>
+                  <RequestContainer requests={artist.requestsReceived} />
+                </TabPanel>
+                <TabPanel>
+                  <Flex justify="center" align="center" minH="250px">
+                    <Text
+                      color="gray.900"
+                      fontSize="4xl"
+                      textTransform="uppercase"
+                      fontWeight="black"
+                    >
+                      coming soon
+                    </Text>
+                  </Flex>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
           </Container>
           <ToastContainer />
         </Box>

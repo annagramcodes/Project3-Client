@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Link, Heading, Text } from "@chakra-ui/react";
+import { Box, Link, Heading, Text, Divider } from "@chakra-ui/react";
 import { Link as ReachLink } from "react-router-dom";
 
 function RequestContainer(props) {
@@ -7,23 +7,26 @@ function RequestContainer(props) {
   console.log(requests);
 
   return (
-    requests && (
-      <Box mt={6} boxShadow="base" textAlign="left" p="6" rounded="md">
+    !!requests.length && (
+      <Box textAlign="left" p="10" rounded="md">
         <Heading
           color="gray.700"
           pb={0.5}
           as="h4"
-          fontSize={{ sm: "16px", md: "18px" }}
+          fontSize={{ sm: "md", md: "2xl" }}
         >
-          Your requests
+          Recent requests:
         </Heading>
         {requests.map((request) => {
           return (
             <Box>
               <ReachLink to={`/requests/${request._id}`}>
-                <Text>{request?.requestedBy.username}</Text>
-                <Text>{request.placement}</Text>
-                <Text>{request.description}</Text>
+                <Heading mt={3} as="h6" fontSize="xl" fontWeight="bold">
+                  {request?.requestedBy.username}
+                </Heading>
+                <Text>{request?.appointmentDate}</Text>
+                <Text mb={3}>{request?.description}</Text>
+                <Divider />
               </ReachLink>
             </Box>
           );

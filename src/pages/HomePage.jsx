@@ -9,12 +9,14 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Link as ReachLink } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import image1 from "../images/luis-villasmil-Y6TOX6LnIGs-unsplash.jpg";
 import image2 from "../images/allef-vinicius-vKIc4k6dm10-unsplash.jpg";
 import image3 from "../images/lucas-lenzi-zeT_i6av9rU-unsplash.jpg";
+import { AuthContext } from "../context/auth.context";
 
 function HomePage() {
+  const { user, isLoggedIn } = useContext(AuthContext);
   return (
     <Box flexGrow={1}>
       <Flex
@@ -24,13 +26,13 @@ function HomePage() {
         flexDirection="column"
         w="100%"
         minH="80vh"
-        bgSize="cover"
-        objectFit="contain"
-        bgImage="url('/images/maria-oswalt-FAnM_Vqs-N0-unsplash.jpg')"
+        bg="rgba(0,0,0,0.3) url('/images/maria-oswalt-FAnM_Vqs-N0-unsplash.jpg') no-repeat center"
+        backgroundBlendMode="darken"
+        bgSize="100%"
       >
         <Box>
           <Heading
-            pt={10}
+            pt="6rem"
             letterSpacing="wide"
             fontWeight="black"
             as="h1"
@@ -39,14 +41,14 @@ function HomePage() {
           >
             Tatuadores Lisboa
           </Heading>
-          <Text fontSize="2xl" color="white">
-            Find an Artist for your next project!
+          <Text letterSpacing="wide" fontSize="xl" color="white">
+            find an artist in Lisbon for your next project
           </Text>
           <ReachLink to="/artist">
             <Button
+              textTransform="uppercase"
               size="md"
-              variant="outline"
-              colorScheme="pink"
+              bg="white"
               px={20}
               my={8}
               color="gray.700"
@@ -111,7 +113,7 @@ function HomePage() {
           </Flex>
           <ReachLink to="/sign-up">
             <Button
-              size="md"
+              size="lg"
               bg="gray.900"
               colorScheme="gray"
               color="white"
@@ -145,9 +147,10 @@ function HomePage() {
           <Text color="gray.600" fontSize="2xl">
             Lorem, ipsum dolor amet consectetur adipisicing.
           </Text>
-          <ReachLink to="/artist">
+
+          <ReachLink to={isLoggedIn ? "/artist" : "/login"}>
             <Button
-              size="md"
+              size="lg"
               colorScheme="pink"
               px={20}
               my={8}
