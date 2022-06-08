@@ -57,9 +57,13 @@ function ArtistDashboard() {
   useEffect(() => {
     apiClient.get(`/api/artist/byUser/${user._id}`).then((response) => {
       setArtist(response.data);
-      successHandle();
+      setNewRequest(response.data.requestsReceived);
     });
   }, []);
+
+  useEffect(() => {
+    successHandle();
+  }, [newRequest]);
 
   const saveImages = async () => {
     setIsSaving(true);
@@ -73,44 +77,53 @@ function ArtistDashboard() {
   }
 
   return (
-    <Box>
-      <Container maxW="container.lg" py={{ sm: 4, md: 10 }}>
-        <Box m="auto" w={{ base: "70%", md: "md" }}>
-          <ArtistContent artist={artist}>
-            <ReachLink to="/artist/edit">
-              <Button mt={6}>Edit</Button>
-            </ReachLink>{" "}
-          </ArtistContent>
-        </Box>
-        <Heading color="gray.600" my={10} as="h2">
-          Create your portfolio
-        </Heading>
-        {!!artist.portfolioImages.length && (
-          <ArtistImages artist={artist} setArtist={setArtist} />
-        )}
-        <Box
-          h={{ base: "100px", md: "100px" }}
-          w={{ base: "70%" }}
-          p={3}
-          bg="white"
-          border="1px dashed lightgrey"
-          m={4}
-        >
-          <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            {isUploading ? (
-              <Spinner />
-            ) : (
-              <Text pt={6}>Drag and drop your images here</Text>
+    <>
+      {artist && (
+        <Box>
+          <Container maxW="container.lg" py={{ sm: 4, md: 10 }}>
+            <Box m="auto" w={{ base: "70%", md: "md" }}>
+              <ArtistContent artist={artist}>
+                <ReachLink to="/artist/edit">
+                  <Button mt={6}>Edit</Button>
+                </ReachLink>{" "}
+              </ArtistContent>
+            </Box>
+            <Heading color="gray.600" my={10} as="h2">
+              Create your portfolio
+            </Heading>
+            {!!artist.portfolioImages.length && (
+              <ArtistImages artist={artist} setArtist={setArtist} />
             )}
-          </div>
+            <Box
+              h={{ base: "100px", md: "100px" }}
+              w={{ base: "70%" }}
+              p={3}
+              bg="white"
+              border="1px dashed lightgrey"
+              m={4}
+            >
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {isUploading ? (
+                  <Spinner />
+                ) : (
+                  <Text pt={6}>Drag and drop your images here</Text>
+                )}
+              </div>
+            </Box>
+            <Button
+              isLoading={isSaving}
+              colorScheme="pink"
+              onClick={saveImages}
+            >
+              Save Collection
+            </Button>
+            <RequestContainer requests={artist.requestsReceived} />
+          </Container>
+          <ToastContainer />
         </Box>
-        <Button isLoading={isSaving} colorScheme="pink" onClick={saveImages}>
-          Save Collection
-        </Button>
-        <RequestContainer requests={artist.requestsReceived} />
-      </Container>
-    </Box>
+      )}
+    </>
   );
 }
 
