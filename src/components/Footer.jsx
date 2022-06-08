@@ -15,13 +15,8 @@ import logo from "../images/tattoo.png";
 
 function Footer() {
   return (
-    <Flex
-      justifyContent="space-between"
-      alignItems="center"
-      py={5}
-      bg="gray.800"
-    >
-      <Image px="5" w="100px" src={logo} />
+    <Flex justifyContent="center" alignItems="center" py={5} bg="gray.800">
+      {/* <Image px="5" w="100px" src={logo} /> */}
       <Text px={7} color="whiteAlpha.900" fontSize="md">
         Made by Alexandre Alves && Anna Egger @Ironhack 2022
       </Text>

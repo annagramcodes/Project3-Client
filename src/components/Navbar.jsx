@@ -1,7 +1,7 @@
 import { Button, Flex, HStack, Image } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { Link as ReachLink } from "react-router-dom";
-import logo from "../images/tattoo.png";
+import logo from "../images/tattoo-studio.png";
 import { AuthContext } from "../context/auth.context";
 
 function Navbar() {
