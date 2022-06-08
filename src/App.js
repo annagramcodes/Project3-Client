@@ -9,7 +9,7 @@ import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import ProfilePage from "./pages/ProfilePage";
 import RequestPage from "./pages/RequestPage";
-import TattoosPage from "./pages/TattoosPage";
+
 import StylesPage from "./pages/StylesPage";
 import { ChakraProvider, Flex } from "@chakra-ui/react";
 import EditProfilePage from "./pages/EditProfilePage";
