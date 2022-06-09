@@ -1,4 +1,7 @@
 import { CalendarIcon, EmailIcon, Search2Icon } from "@chakra-ui/icons";
+import { IconContext } from "react-icons";
+import { Icon } from "@chakra-ui/react";
+import { RiHeartFill } from "react-icons/ri";
 import {
   Box,
   Center,
@@ -78,7 +81,7 @@ function HomePage() {
           src={image1}
         />
         <Box textAlign="left">
-          <Heading mb="3rem" as="h2" fontSize="4xl" fontWeight="black">
+          <Heading mb="2rem" as="h2" fontSize="4xl" fontWeight="black">
             How it works
           </Heading>
           <Flex gap={4}>
@@ -90,20 +93,22 @@ function HomePage() {
                 Find Artists
               </Heading>
               <Text color="gray.600" fontSize="xl">
-                Lorem, ipsum dolor sit amet consectetur.
+                Looking for a tattoo artist in Lisbon? Use our Website to find
+                them.
               </Text>
             </Box>
           </Flex>
           <Flex gap={6}>
             <Box mb="2rem">
-              <EmailIcon w={7} h={7} />
+              <Icon as={RiHeartFill} w={8} h={8} />
             </Box>
-            <Box mb="2rem">
+            <Box mb="2rem" mr="-5px">
               <Heading as="h3" fontSize="2xl" fontWeight="bold">
-                Make contact
+                Add favorites
               </Heading>
               <Text color="gray.600" fontSize="xl">
-                Lorem, ipsum dolor sit amet consectet elit.{" "}
+                Add your favorite Artists, so you can always check them in your
+                profile.
               </Text>
             </Box>
           </Flex>
@@ -116,7 +121,7 @@ function HomePage() {
                 Book an appointment
               </Heading>
               <Text color="gray.600" fontSize="xl">
-                Lorem, ipsum dolor amet consectetur adipisicing elit.{" "}
+                You can book an appointment and get in contact with the artist.
               </Text>
             </Box>
           </Flex>

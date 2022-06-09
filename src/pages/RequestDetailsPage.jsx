@@ -103,7 +103,7 @@ function RequestDetailsPage() {
         >
           <Box
             m="auto"
-            maxW="container.sm"
+            maxW={{ base: "90%", md: "container.sm" }}
             bg="white"
             boxShadow="base"
             textAlign="left"
