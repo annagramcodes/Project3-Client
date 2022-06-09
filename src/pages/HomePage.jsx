@@ -49,7 +49,7 @@ function HomePage() {
           >
             Find tattoo artists in Lisbon!
           </Text>
-          <ReachLink to="/artist">
+          <ReachLink to={isLoggedIn ? "/artist" : "/login"}>
             <Button
               textTransform="uppercase"
               size="md"
@@ -120,7 +120,7 @@ function HomePage() {
               </Text>
             </Box>
           </Flex>
-          <ReachLink to="/sign-up">
+          <ReachLink to="/signup">
             <Button
               size="lg"
               bg="gray.900"
