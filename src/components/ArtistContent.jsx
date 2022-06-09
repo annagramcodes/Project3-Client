@@ -25,7 +25,7 @@ function ArtistContent(props) {
       >
         <Box>
           <Flex justifyContent="space-between">
-            <Heading color="gray.600" as="h2" pb={8}>
+            <Heading color="gray.700" as="h2" pb={8}>
               {artist.name}
             </Heading>
             <Image

@@ -10,6 +10,9 @@ import {
   Container,
   Box,
   Heading,
+  VStack,
+  Flex,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import { useDropzone } from "react-dropzone";
 import { ToastContainer, toast } from "react-toastify";
@@ -158,48 +161,77 @@ function EditProfilePage() {
   };
 
   return (
-    <Container className="EditProfilePage">
-      <Heading as="h2" size="xl">
-        Edit your Profile
-      </Heading>
-      <form onSubmit={handleSubmit}>
-        <FormControl>
-          <FormLabel htmlFor="username"> Username:</FormLabel>
-          <Input
-            type="text"
-            name="username"
-            value={username}
-            onChange={handleUsername}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="email">Email:</FormLabel>
-          <Input
-            type="text"
-            name="email"
-            value={email}
-            onChange={handleEmail}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel htmlFor="image">Upload a Photo:</FormLabel>
-          <Box p={5} bg="gray.100" m={4}>
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              <p>Drag 'n' drop a file here, or click to select a file</p>
-              <ul>{acceptedFileItems}</ul>
-            </div>
-          </Box>
-        </FormControl>
-        <Button my={4} type="submit">
-          Edit Profile
-        </Button>
-      </form>
-      <Button my={2} onClick={deleteUser}>
-        Delete Profile
-      </Button>
-      <ToastContainer />
-    </Container>
+    <Flex
+      flexGrow={1}
+      justify="center"
+      alignItems="center"
+      bg="url('/images/matheus-ferrero-RBsrv4yV5KY-unsplash.jpg')"
+      backgroundBlendMode="darken"
+      bgPos="top"
+      bgSize="100%"
+    >
+      <VStack mt={12} mb={8} spacing={5} minW="400px">
+        <Heading
+          color="white"
+          as="h1"
+          fontSize="5xl"
+          fontWeight="black"
+          textTransform="uppercase"
+          mb={4}
+        >
+          Edit your Profile
+        </Heading>
+        <Box mb={5} p={8} w="md" bg="white" rounded="lg">
+          <form onSubmit={handleSubmit}>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="username"> Username:</FormLabel>
+              <Input
+                type="text"
+                name="username"
+                value={username}
+                onChange={handleUsername}
+              />
+            </FormControl>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="email">Email:</FormLabel>
+              <Input
+                type="text"
+                name="email"
+                value={email}
+                onChange={handleEmail}
+              />
+            </FormControl>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="image">Upload a Photo:</FormLabel>
+              <Box p={5} bg="gray.100" m={4}>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p>Drag 'n' drop a file here, or click to select a file</p>
+                  <ul>{acceptedFileItems}</ul>
+                </div>
+              </Box>
+            </FormControl>
+            <Flex gap="4" my={4}>
+              <Button
+                // bg="gray.700"
+                variant="outline"
+                border="2px"
+                colorScheme="gray"
+                color="gray.700"
+                px={14}
+                type="submit"
+              >
+                Edit Profile
+              </Button>
+              <Button px={12} colorScheme="red" onClick={deleteUser}>
+                Delete Profile
+              </Button>
+            </Flex>
+          </form>
+        </Box>
+        <ToastContainer />
+      </VStack>
+    </Flex>
   );
 }
 

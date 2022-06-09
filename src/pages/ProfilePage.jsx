@@ -39,7 +39,7 @@ function ProfilePage() {
     <Box
       flexGrow={1}
       bg="rgba(0,0,0, 0.1) url('/images/christer-ehrling-fie1PWHWeUo-unsplash.jpg') no-repeat"
-      filter="grayscale(70%)"
+      filter="grayscale(40%)"
       backgroundBlendMode="lighten"
       bgSize="100%"
     >
@@ -57,20 +57,20 @@ function ProfilePage() {
             alignItems="center"
           >
             <Box>
-              <Heading as="h2" py={3} size="xl">
+              <Heading color="gray.800" as="h2" py={4} size="xl">
                 Hello {user.username}!
               </Heading>
-              <Link as={ReachLink} to={`/profile/edit/${user._id}`}>
+              <ReachLink to={`/profile/edit/${user._id}`}>
                 <Button
-                  bg="gray.900"
+                  bg="gray.700"
                   colorScheme="gray"
                   color="white"
-                  px={16}
+                  px={14}
                   my={4}
                 >
                   Edit Profile
                 </Button>
-              </Link>
+              </ReachLink>
             </Box>
             <Image
               borderRadius="full"

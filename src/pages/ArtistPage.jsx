@@ -5,6 +5,12 @@ import {
   Container,
   Flex,
   Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
 } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "@chakra-ui/react";
@@ -16,6 +22,7 @@ import useAxios from "../utils/axios.hook";
 import { Link as ReachLink } from "react-router-dom";
 import ArtistImages from "../components/ArtistImages";
 import AddFavorite from "../components/AddFavorite";
+import ArtistImagesPublic from "../components/ArtistImagesPublic";
 
 function ArtistPage() {
   const [artist, setArtist] = useState();
@@ -48,22 +55,82 @@ function ArtistPage() {
   }
 
   return (
-    <Container py={5}>
-      <Box>
-        <ArtistContent artist={artist}>
-          <Flex justify="center" align="center">
-            <ButtonGroup>
-              <Link as={ReachLink} to={`/requests/${artist._id}/create`}>
-                <Button colorScheme="pink"> Book</Button>
-              </Link>
-              <AddFavorite artist={artist} user={userData} />
-            </ButtonGroup>
-          </Flex>
-        </ArtistContent>
-      </Box>
-      {!!artist.portfolioImages.length && <ArtistImages artist={artist} />}
-      <Box></Box>
-    </Container>
+    <>
+      {artist && (
+        <Box
+          bg=" linear-gradient(180deg, rgba(252,245,233,0.1) 400px, rgba(255,255,255,1) 1000px), url('/images/annie-spratt-gv1I7bYLLDI-unsplash.jpg') no-repeat"
+          bgSize="100%"
+          bgColor="white"
+        >
+          <Container maxW="container.lg" py={{ sm: 4, md: 10 }}>
+            <Box m="auto" mb={10} w={{ base: "70%", md: "md" }}>
+              <ArtistContent artist={artist}>
+                <Flex gap={6} justify="center" align="center">
+                  <ReachLink to={`/requests/${artist._id}/create`}>
+                    <Button colorScheme="pink" px={16} my={4}>
+                      Book
+                    </Button>
+                  </ReachLink>
+                  <AddFavorite artist={artist} user={userData} />
+                </Flex>
+              </ArtistContent>
+            </Box>
+            <Tabs
+              boxShadow="base"
+              rounded="md"
+              bg="white"
+              isFitted
+              variant="enclosed"
+            >
+              <TabList>
+                <Tab
+                  fontWeight="bold"
+                  color="gray.600"
+                  _selected={{
+                    border: 0,
+                    borderBottom: "2px",
+                    borderColor: "gray.400",
+                  }}
+                >
+                  Tattoo Portfolio
+                </Tab>
+
+                <Tab
+                  fontWeight="bold"
+                  color="gray.600"
+                  _selected={{
+                    border: 0,
+                    borderBottom: "2px",
+                    borderColor: "gray.400",
+                  }}
+                >
+                  Available Flashes
+                </Tab>
+              </TabList>
+              <TabPanels>
+                <TabPanel>
+                  {!!artist.portfolioImages.length && (
+                    <ArtistImagesPublic artist={artist} />
+                  )}
+                </TabPanel>
+                <TabPanel>
+                  <Flex justify="center" align="center" minH="250px">
+                    <Text
+                      color="gray.900"
+                      fontSize="4xl"
+                      textTransform="uppercase"
+                      fontWeight="black"
+                    >
+                      coming soon
+                    </Text>
+                  </Flex>
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Container>
+        </Box>
+      )}
+    </>
   );
 }
 

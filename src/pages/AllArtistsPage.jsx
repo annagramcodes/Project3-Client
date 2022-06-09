@@ -3,7 +3,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ArtistSearch from "../components/ArtistSearch";
 import ArtistCard from "../components/ArtistCard";
-import { Container, Flex, Heading, SimpleGrid, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  Heading,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 
 function AllArtistsPage() {
   const [artist, setArtist] = useState([]);
@@ -42,7 +49,7 @@ function AllArtistsPage() {
   return (
     <>
       {filteredArtist && (
-        <div className="AllArtistPage">
+        <Box flexGrow={1} className="AllArtistPage">
           <Container maxW="container.md">
             <Heading fontSize="6xl" mt={{ sm: 4, md: "6" }} mb={2} as="h1">
               Explore
@@ -65,7 +72,7 @@ function AllArtistsPage() {
               return <ArtistCard key={artist._id} artist={artists} />;
             })}
           </Flex>
-        </div>
+        </Box>
       )}
     </>
   );

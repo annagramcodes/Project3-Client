@@ -1,8 +1,8 @@
 import { DeleteIcon } from "@chakra-ui/icons";
-import { SimpleGrid, Image, Box, IconButton, filter } from "@chakra-ui/react";
+import { Box, IconButton, Image, SimpleGrid } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-
 import React from "react";
+
 const ImageWrapper = styled(Box)`
   button {
     display: none;
