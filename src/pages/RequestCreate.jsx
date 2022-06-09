@@ -29,6 +29,7 @@ function RequestCreate() {
   const navigate = useNavigate();
   //const [value, onChange] = useState(new Date());
   const [isUploading, setIsUploading] = useState(false);
+  const [title, setTitle] = useState("");
   const [placement, setPlacement] = useState("");
   const [appointmentDate, setAppointmentDate] = useState(null);
   const [description, setDescription] = useState("");
@@ -38,13 +39,15 @@ function RequestCreate() {
   const [imagesUrl, setImagesUrl] = useState([]);
 
   const successHandle = () => {
-    toast.success("Yay", {
-      position: "top-center",
-      autoClose: 1000,
+    toast.info("Image is uploading. Click Make a Request again", {
+      delay: 1000,
+      position: "top-right",
+      autoClose: 3000,
       closeOnClick: true,
     });
   };
 
+  const handleTitle = (e) => setTitle(e.target.value);
   const handlePlacement = (e) => setPlacement(e.target.value);
   const handleAppointmentDate = (e) => {
     const newDate = new Date(e.target.value);
@@ -107,6 +110,7 @@ function RequestCreate() {
     }
 
     const body = {
+      title,
       placement,
       size,
       color,
@@ -126,6 +130,7 @@ function RequestCreate() {
         },
       })
       .then(() => {
+        setTitle("");
         setPlacement("");
         setDescription("");
         setAppointmentDate("");
@@ -134,7 +139,7 @@ function RequestCreate() {
         setBudget(0);
         setImagesUrl("");
 
-        navigate(`/requests`);
+        navigate(`/profile`);
       })
       .catch((err) => console.log(err));
   };
@@ -144,7 +149,7 @@ function RequestCreate() {
     formState: { errors },
   } = useForm();
 
-  //const [errorMessage, setErrorMessage] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   //   const onSubmit = (data) => {
   //     const { placement, size, color, description, budget, imagesUrl } = data;
@@ -173,6 +178,18 @@ function RequestCreate() {
 
         <form onSubmit={handleSubmit}>
           <FormControl>
+            <FormLabel htmlFor="title">Title</FormLabel>
+            <Input
+              type="text"
+              {...register("title", { required: true })}
+              onChange={handleTitle}
+            />
+            {errors.title && (
+              <FormErrorMessage>Required field.</FormErrorMessage>
+            )}
+          </FormControl>
+
+          <FormControl>
             <FormLabel htmlFor="placement">Placement</FormLabel>
             <Input
               placeholder="E.g. arm"
@@ -193,15 +210,22 @@ function RequestCreate() {
               {...register("size", { required: true })}
               onChange={handleSize}
             />
+            {errors.size && (
+              <FormErrorMessage>Required field.</FormErrorMessage>
+            )}
           </FormControl>
 
           <FormControl>
             <FormLabel htmlFor="budget">Budget</FormLabel>
             <Input
+              placeholder="In euro"
               type="number"
               {...register("budget", { required: true })}
               onChange={handleBudget}
             />
+            {errors.budget && (
+              <FormErrorMessage>Required field.</FormErrorMessage>
+            )}
           </FormControl>
 
           <FormControl>
@@ -210,6 +234,9 @@ function RequestCreate() {
               {...register("description", { required: true })}
               onChange={handleDescription}
             />
+            {errors.description && (
+              <FormErrorMessage>Required field.</FormErrorMessage>
+            )}
           </FormControl>
 
           <FormControl>
@@ -237,12 +264,6 @@ function RequestCreate() {
           </FormControl>
 
           <FormControl>
-            {/* <FormLabel htmlFor="image">Upload a Photo:</FormLabel>
-            <Input
-              type="file"
-              onChange={(e) => handleFilesUpload(e)}
-              multiple
-            /> */}
             <Box p={5} bg="gray.100" m={4}>
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
@@ -259,12 +280,15 @@ function RequestCreate() {
               {...register("appointmentDate", { required: true })}
               onChange={handleAppointmentDate}
             />
+            {errors.appointmentDate && (
+              <FormErrorMessage>Required field.</FormErrorMessage>
+            )}
           </FormControl>
 
           <Button type="submit">Make a Request</Button>
         </form>
 
-        {/* {errorMessage && <p className="error-message">{errorMessage}</p>} */}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
       <ToastContainer />
     </Container>

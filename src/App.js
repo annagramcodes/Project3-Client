@@ -8,13 +8,12 @@ import LoginPage from "./pages/LoginPage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import ProfilePage from "./pages/ProfilePage";
-import RequestPage from "./pages/RequestPage";
+// import RequestPage from "./pages/RequestPage";
 
 import StylesPage from "./pages/StylesPage";
 import { ChakraProvider, Flex } from "@chakra-ui/react";
 import EditProfilePage from "./pages/EditProfilePage";
 import ArtistSignUp from "./pages/ArtistSignUp";
-import ArtistDashboard from "./pages/ArtistDashboard";
 import ArtistPage from "./pages/ArtistPage";
 import EditArtist from "./pages/EditArtist";
 import Dashboard from "./components/Dashboard";
@@ -108,14 +107,14 @@ function App() {
             }
           />
 
-          <Route
+          {/* <Route
             path="/requests"
             element={
               <IsPrivate>
                 <RequestPage />
               </IsPrivate>
             }
-          />
+          /> */}
           <Route
             path="/requests/:artistId/create"
             element={

@@ -1,9 +1,10 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link as ReachLink } from "react-router-dom";
 
 function FavoriteList(props) {
-  const { favourites } = props;
-  console.log(favourites);
+  const { artist, favourites } = props;
+  console.log(artist);
   return (
     <>
       {favourites && (
@@ -17,10 +18,13 @@ function FavoriteList(props) {
             Favorite artists
           </Heading>
           {favourites.map((favourite) => {
+            console.log(favourite);
             return (
               <Box>
-                <Text>{favourite.name}</Text>
-                <Text>{favourite.location}</Text>
+                <ReachLink to={`/artist/${favourite._id}`}>
+                  <Text>{favourite.name}</Text>
+                  <Text>{favourite.location}</Text>
+                </ReachLink>
               </Box>
             );
           })}

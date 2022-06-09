@@ -40,9 +40,9 @@ function AddFavorite(props) {
   return (
     <>
       {isFavourite ? (
-        <Button onClick={handleClick}>remove Fav</Button>
+        <Button onClick={handleClick}>Remove Fav</Button>
       ) : (
-        <Button onClick={handleClick}>add Fav</Button>
+        <Button onClick={handleClick}>Add Fav</Button>
       )}
     </>
   );
