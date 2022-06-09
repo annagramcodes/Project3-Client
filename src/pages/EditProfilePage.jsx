@@ -30,8 +30,8 @@ function EditProfilePage() {
 
   const successHandle = () => {
     toast.info("Image is uploading. Click Edit Profile again", {
-      position: "top-center",
-      autoClose: 1000,
+      position: "top-right",
+      autoClose: 3000,
       closeOnClick: true,
     });
   };
@@ -80,34 +80,6 @@ function EditProfilePage() {
   const handleUsername = (e) => setUsername(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
   const handleImageUrl = (e) => setImageUrl(e.target.value);
-
-  // const handleFileUpload = (e) => {
-  //   setIsUploading(true);
-  //   const uploadData = new FormData();
-
-  //   uploadData.append("imageUrl", e.target.files[0]);
-
-  //   axios
-  //     .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData)
-  //     .then((response) => {
-  //       setIsUploading(false);
-  //       setImageUrl(response.data.fileUrl);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // const acceptedFileItems = acceptedFiles.map((file) => (
-  //   <li key={file.path}>
-  //     {file.path} - {file.size} bytes
-  //   </li>
-  // ));
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (isUploading) {
-  //     alert("Image is uploading");
-  //     return;
-  //   }
 
   const onDrop = async (droppedFiles) => {
     setIsUploading(true);

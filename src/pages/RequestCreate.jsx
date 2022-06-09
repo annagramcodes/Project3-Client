@@ -1,38 +1,32 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDropzone } from "react-dropzone";
 import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  HStack,
+  Input,
   Radio,
   RadioGroup,
-  Button,
-  Input,
-  FormControl,
-  FormLabel,
-  HStack,
-  FormErrorMessage,
-  Container,
-  Textarea,
-  Box,
-  VStack,
-  Heading,
-  Flex,
-  UnorderedList,
   Text,
+  Textarea,
+  UnorderedList,
+  VStack,
 } from "@chakra-ui/react";
 import axios from "axios";
+import React, { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-// import Calendar from "react-calendar";
-// import "react-calendar/dist/Calendar.css";
 
 function RequestCreate() {
   const { artistId } = useParams();
-  console.log(artistId);
 
   const navigate = useNavigate();
-  //const [value, onChange] = useState(new Date());
   const [isUploading, setIsUploading] = useState(false);
   const [title, setTitle] = useState("");
   const [placement, setPlacement] = useState("");
@@ -64,21 +58,6 @@ function RequestCreate() {
   const handleSize = (e) => setSize(e.target.value);
   const handleBudget = (e) => setBudget(e.target.value);
   const handleimagesUrl = (e) => setImagesUrl(e.target.value);
-
-  // const handleFilesUpload = (e) => {
-  //   setIsUploading(true);
-  //   const uploadData = new FormData();
-
-  //   uploadData.append("imagesUrl", e.target.files[0]);
-
-  //   axios
-  //     .post(`${process.env.REACT_APP_API_URL}/api/uploads`, uploadData)
-  //     .then((response) => {
-  //       setIsUploading(false);
-  //       setImagesUrl(response.data.newPhotos);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
 
   const onDrop = async (droppedFiles) => {
     setIsUploading(true);
@@ -155,26 +134,6 @@ function RequestCreate() {
   } = useForm();
 
   const [errorMessage, setErrorMessage] = useState(undefined);
-
-  //   const onSubmit = (data) => {
-  //     const { placement, size, color, description, budget, imagesUrl } = data;
-  //     const body = { placement, size, color, description, budget, imagesUrl };
-
-  //     // axios
-  //     //   .post(`${process.env.REACT_APP_API_URL}/auth/signup`, body)
-  //     //   .then((response) => {
-  //     //     storeToken(response.data.authToken);
-  //     //     authenticateUser();
-  //     //     if (profileType === "artist") {
-  //     //       navigate("/signup-artist");
-  //     //     } else {
-  //     //       navigate("/login");
-  //     //     }
-  //     //   })
-  //     //   .catch((err) => {
-  //     //     setErrorMessage(err.response.data.errorMessage);
-  //     //   });
-  //   };
 
   return (
     <Flex

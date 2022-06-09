@@ -1,22 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import useAxios from "../utils/axios.hook";
-import {
-  Box,
-  Link,
-  Heading,
-  Text,
-  Flex,
-  Button,
-  SimpleGrid,
-  Image,
-  Container,
-} from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../context/auth.context";
+import useAxios from "../utils/axios.hook";
 
 function RequestDetailsPage() {
   const { apiClient } = useAxios();
@@ -28,8 +17,8 @@ function RequestDetailsPage() {
   const successHandle = () => {
     toast.success("Request accepted succesfully", {
       delay: 1000,
-      position: "top-center",
-      autoClose: 1000,
+      position: "top-right",
+      autoClose: 3000,
       closeOnClick: true,
     });
   };
@@ -37,8 +26,8 @@ function RequestDetailsPage() {
   const rejectHandle = () => {
     toast.success("Request rejected succesfully", {
       delay: 1000,
-      position: "top-center",
-      autoClose: 1000,
+      position: "top-right",
+      autoClose: 3000,
       closeOnClick: true,
     });
   };

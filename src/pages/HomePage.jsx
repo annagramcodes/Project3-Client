@@ -14,7 +14,7 @@ import {
 import { Link as ReachLink } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import image1 from "../images/luis-villasmil-Y6TOX6LnIGs-unsplash.jpg";
-import image2 from "../images/allef-vinicius-vKIc4k6dm10-unsplash.jpg";
+import image2 from "../images/ritesh-raj-fnTy5TffjkQ-unsplash.jpg";
 import image3 from "../images/lucas-lenzi-zeT_i6av9rU-unsplash.jpg";
 import { AuthContext } from "../context/auth.context";
 
@@ -68,18 +68,18 @@ function HomePage() {
         </Box>
       </Flex>
       <Flex
-        px={{ base: "2rem", md: "10rem" }}
+        px={{ base: "2rem", md: "13rem" }}
         flexDirection={{ base: "column-reverse", md: "row" }}
-        gap={{ base: "1rem", md: "6rem" }}
+        gap={{ base: "1rem", md: "8rem" }}
         w="100%"
         minH="60vh"
-        mb={{ base: "50px", md: "150px" }}
+        mb={{ base: "50px", md: "100px" }}
       >
         <Image
-          pb={{ base: "30px", md: "150px" }}
+          pb={{ base: "30px", md: "50px" }}
           objectFit="contain"
-          w={{ base: "xs", md: "xl" }}
-          src={image1}
+          w={{ base: "xs", md: "md" }}
+          src={image2}
         />
         <Box textAlign="left">
           <Heading mb="2rem" as="h2" fontSize="4xl" fontWeight="black">
@@ -133,7 +133,8 @@ function HomePage() {
               colorScheme="gray"
               color="white"
               px={20}
-              my={{ base: 0, md: 4 }}
+              my={{ base: 0, md: 2 }}
+              ml={5}
               mx={{ base: "14%", md: 0 }}
             >
               Sign up
@@ -149,7 +150,7 @@ function HomePage() {
         minH="60vh"
         mb={{ base: "50px", md: "100px" }}
       >
-        <Image w="xl" src={image3} />
+        <Image w="xl" src={image1} />
         <Flex
           pr={4}
           alignItems="flex-start"

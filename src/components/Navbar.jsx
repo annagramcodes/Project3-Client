@@ -27,10 +27,9 @@ function Navbar() {
           <Image w="50px" src={logo} />
         </ReachLink>
 
-        {isLoggedIn && user.profileType === "client" && (
+        {isLoggedIn && (
           <ReachLink to="/artist">
             <Button color="gray.900" variant="link">
-              {" "}
               Find an Artist
             </Button>
           </ReachLink>

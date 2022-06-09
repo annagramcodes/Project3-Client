@@ -49,8 +49,8 @@ function ArtistDashboard() {
 
   const successHandle = () => {
     toast.success("Collection saved succesfully", {
-      position: "top-center",
-      autoClose: 1000,
+      position: "top-right",
+      autoClose: 3000,
       closeOnClick: true,
     });
   };
@@ -61,10 +61,6 @@ function ArtistDashboard() {
       setNewRequest(response.data.requestsReceived);
     });
   }, []);
-
-  // useEffect(() => {
-  //   successHandle();
-  // }, []);
 
   const saveImages = async () => {
     setIsSaving(true);
@@ -172,7 +168,8 @@ function ArtistDashboard() {
                         <Spinner />
                       ) : (
                         <Text color="gray.500" pt={10}>
-                          Drag & drop your images here
+                          Drag 'n' drop a file here, or click to select a file,
+                          and then click "save collection".
                         </Text>
                       )}
                     </div>
