@@ -70,14 +70,15 @@ function HomePage() {
       <Flex
         px={{ base: "2rem", md: "10rem" }}
         flexDirection={{ base: "column-reverse", md: "row" }}
-        gap={{ base: "1rem", md: "8rem" }}
+        gap={{ base: "1rem", md: "6rem" }}
         w="100%"
         minH="60vh"
         mb={{ base: "50px", md: "150px" }}
       >
         <Image
+          pb={{ base: "30px", md: "150px" }}
           objectFit="contain"
-          boxSize={{ base: "xs", md: "lg" }}
+          w={{ base: "xs", md: "xl" }}
           src={image1}
         />
         <Box textAlign="left">
@@ -125,14 +126,14 @@ function HomePage() {
               </Text>
             </Box>
           </Flex>
-          <ReachLink to="/signup">
+          <ReachLink to={isLoggedIn ? "/profile" : "/signup"}>
             <Button
               size="lg"
               bg="gray.900"
               colorScheme="gray"
               color="white"
               px={20}
-              my={{ base: 0, md: 8 }}
+              my={{ base: 0, md: 4 }}
               mx={{ base: "14%", md: 0 }}
             >
               Sign up
@@ -160,7 +161,8 @@ function HomePage() {
             Find Artists in Lisbon
           </Heading>
           <Text color="gray.600" fontSize="2xl">
-            Lorem, ipsum dolor amet consectetur adipisicing.
+            Our Webapp features the best tattoo artists in Libon. Find one for
+            your next project.
           </Text>
 
           <ReachLink to={isLoggedIn ? "/artist" : "/login"}>
