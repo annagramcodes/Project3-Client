@@ -33,6 +33,7 @@ function ArtistPage() {
 
   const getArtist = () => {
     apiClient.get(`/api/artist/${artistId}`).then((response) => {
+      console.log(response.data);
       setArtist(response.data);
     });
   };

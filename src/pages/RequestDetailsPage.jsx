@@ -16,6 +16,15 @@ function RequestDetailsPage() {
   const navigate = useNavigate();
 
   const successHandle = () => {
+    toast.success("Request accepted succesfully", {
+      delay: 1000,
+      position: "top-center",
+      autoClose: 1000,
+      closeOnClick: true,
+    });
+  };
+
+  const rejectHandle = () => {
     toast.success("Request rejected succesfully", {
       delay: 1000,
       position: "top-center",
@@ -63,7 +72,7 @@ function RequestDetailsPage() {
       setRequests(response.data);
 
       navigate("/dashboard");
-      successHandle();
+      rejectHandle();
     } catch (error) {
       console.log(error);
     }

@@ -26,6 +26,7 @@ function RequestContainer(props) {
                 </Heading>
                 <Text>{request?.appointmentDate}</Text>
                 <Text mb={3}>{request?.description}</Text>
+                <Text mb={3}>{request?.status}</Text>
                 <Divider />
               </ReachLink>
             </Box>

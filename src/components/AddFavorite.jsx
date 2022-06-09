@@ -14,8 +14,10 @@ function AddFavorite(props) {
       const response = await apiClient.get(`/api/profile/${user._id}`);
       const favourites = response.data.favoriteArtists;
 
-      if (favourites.length > 0) {
-        favourites.some((el) => el._id === artist._id);
+      if (
+        favourites.length > 0 &&
+        favourites.some((el) => el._id === artist._id)
+      ) {
         setIsFavourite(true);
       }
     } catch (error) {

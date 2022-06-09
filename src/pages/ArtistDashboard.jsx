@@ -48,7 +48,7 @@ function ArtistDashboard() {
   });
 
   const successHandle = () => {
-    toast.success("Yay", {
+    toast.success("Collection saved succesfully", {
       position: "top-center",
       autoClose: 1000,
       closeOnClick: true,
@@ -62,14 +62,15 @@ function ArtistDashboard() {
     });
   }, []);
 
-  useEffect(() => {
-    successHandle();
-  }, []);
+  // useEffect(() => {
+  //   successHandle();
+  // }, []);
 
   const saveImages = async () => {
     setIsSaving(true);
     await apiClient.put(`/api/artist/${artist._id}`, artist);
     console.log("successfully saved artist", artist);
+    successHandle();
     setIsSaving(false);
   };
 
