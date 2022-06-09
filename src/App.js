@@ -40,9 +40,9 @@ function App() {
         let artistInfo = await apiClient.get(
           `/api/artist/${userInfo.data.artistProfile}`
         );
-        console.log(artistInfo);
-        let requests = artistInfo.data.requestsReceived;
-
+        let requests = artistInfo.data.requestsReceived.filter(
+          (el) => el.status === "pending"
+        );
         if (requests.length && !notified) {
           let message = requests[0].title;
           toast.info(`New request! : ${message} `, {
