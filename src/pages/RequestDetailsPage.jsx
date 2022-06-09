@@ -2,7 +2,17 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import useAxios from "../utils/axios.hook";
-import { Button } from "@chakra-ui/react";
+import {
+  Box,
+  Link,
+  Heading,
+  Text,
+  Divider,
+  Button,
+  SimpleGrid,
+  Image,
+  Container,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import { ToastContainer, toast } from "react-toastify";
@@ -85,9 +95,32 @@ function RequestDetailsPage() {
   return (
     <>
       {requests && (
-        <div>
-          <p>{requests.description}</p>
-          <p>{requests.placement}</p>
+        <Container maxW="container.lg" py={{ sm: 4, md: 1 }}>
+          <Heading mt={3} as="h6" fontSize="3xl" fontWeight="bold">
+            {requests.title}
+          </Heading>
+
+          <Text>Placement: {requests.placement}</Text>
+          <Text>Budget: {requests.budget}</Text>
+          <Text>{requests.color ? "Color" : "Black and White"}</Text>
+          <Text>{requests.description}</Text>
+          <Text>
+            {new Date(requests.appointmentDate).toLocaleString("en-US")}
+          </Text>
+          <SimpleGrid mb={5} columns={{ base: 2, md: 4 }} spacing={4}>
+            {requests.imagesUrl?.map((imageUrl) => (
+              <Image
+                src={imageUrl}
+                position="relative"
+                boxSize="300px"
+                rounded="md"
+                m="0"
+                objectFit="cover"
+                alt="tattoo"
+              />
+            ))}
+          </SimpleGrid>
+
           {user.profileType === "artist" && (
             <Button onClick={handleAccept}>Accept the request</Button>
           )}
@@ -95,7 +128,7 @@ function RequestDetailsPage() {
             <Button onClick={handleReject}>Reject the request</Button>
           )}
           {/* <ToastContainer /> */}
-        </div>
+        </Container>
       )}
     </>
   );

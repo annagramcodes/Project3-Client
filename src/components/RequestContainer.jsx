@@ -22,10 +22,15 @@ function RequestContainer(props) {
             <Box>
               <ReachLink to={`/requests/${request._id}`}>
                 <Heading mt={3} as="h6" fontSize="xl" fontWeight="bold">
-                  {request?.requestedBy.username}
+                  {/* {request?.requestedBy.username} */}
+                  {request?.title}
                 </Heading>
-                <Text>{request?.appointmentDate}</Text>
-                <Text mb={3}>{request?.status}</Text>
+
+                <Text mt={3} as="h6">
+                  When:{" "}
+                  {new Date(request?.appointmentDate).toLocaleString("en-US")}
+                </Text>
+                <Text mb={3}>Status: {request?.status}</Text>
                 <Divider />
               </ReachLink>
             </Box>
