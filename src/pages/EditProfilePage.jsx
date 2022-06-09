@@ -29,7 +29,7 @@ function EditProfilePage() {
   const { authenticateUser, logoutUser, storeToken } = useContext(AuthContext);
 
   const successHandle = () => {
-    toast.success("Yay", {
+    toast.info("Image is uploading. Click Edit Profile again", {
       position: "top-center",
       autoClose: 1000,
       closeOnClick: true,

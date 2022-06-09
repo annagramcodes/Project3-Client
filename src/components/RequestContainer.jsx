@@ -25,7 +25,6 @@ function RequestContainer(props) {
                   {request?.requestedBy.username}
                 </Heading>
                 <Text>{request?.appointmentDate}</Text>
-                <Text mb={3}>{request?.description}</Text>
                 <Text mb={3}>{request?.status}</Text>
                 <Divider />
               </ReachLink>

@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import useAxios from "../utils/axios.hook";
 import { AuthContext } from "../context/auth.context";
 import { Button } from "@chakra-ui/react";
+//import { RiHeartFill, RiHeartLine } from "react-icons/ri";
+import { IconContext } from "react-icons";
+import { Icon } from "@chakra-ui/react";
+import { RiHeartFill, RiHeartLine } from "react-icons/ri";
 
 function AddFavorite(props) {
   const { apiClient } = useAxios();
@@ -42,9 +46,14 @@ function AddFavorite(props) {
   return (
     <>
       {isFavourite ? (
-        <Button onClick={handleClick}>Remove Fav</Button>
+        <Button onClick={handleClick}>
+          Remove Fav
+          <Icon as={RiHeartFill} w={6} h={6} pl={1} color="red.500" />
+        </Button>
       ) : (
-        <Button onClick={handleClick}>Add Fav</Button>
+        <Button onClick={handleClick}>
+          Add Fav <Icon as={RiHeartLine} w={6} h={6} pl={1} color="red.500" />
+        </Button>
       )}
     </>
   );

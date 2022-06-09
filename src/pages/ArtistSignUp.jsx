@@ -125,29 +125,30 @@ function ArtistSignUp() {
                   <Checkbox {...register("styles")} value="dotwork">
                     Dotwork
                   </Checkbox>
-                  <Checkbox {...register("styles")} value="realism">
-                    Realism
-                  </Checkbox>
                   <Checkbox {...register("styles")} value="fineline">
                     Fineline
                   </Checkbox>
-                  <Checkbox {...register("styles")} value="old-school">
-                    Old School
-                  </Checkbox>
-                  <Checkbox {...register("styles")} value="new-school">
-                    New School
+
+                  <Checkbox {...register("styles")} value="geometric">
+                    Geometric
                   </Checkbox>
                   <Checkbox {...register("styles")} value="hand-poked">
                     Hand-Poked
                   </Checkbox>
-                  <Checkbox {...register("styles")} value="geometric">
-                    Geometric
+                  <Checkbox {...register("styles")} value="lettering">
+                    Lettering
+                  </Checkbox>
+                  <Checkbox {...register("styles")} value="new-school">
+                    New School
+                  </Checkbox>
+                  <Checkbox {...register("styles")} value="old-school">
+                    Old School
+                  </Checkbox>
+                  <Checkbox {...register("styles")} value="realism">
+                    Realism
                   </Checkbox>
                   <Checkbox {...register("styles")} value="surrealism">
                     Surrealism
-                  </Checkbox>
-                  <Checkbox {...register("styles")} value="lettering">
-                    Lettering
                   </Checkbox>
                   <Checkbox {...register("styles")} value="watercolor">
                     Watercolor
