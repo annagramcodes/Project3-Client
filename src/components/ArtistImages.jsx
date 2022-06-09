@@ -33,6 +33,7 @@ function ArtistImages(props) {
           <ImageWrapper position="relative">
             <Image
               boxSize="300px"
+              rounded="md"
               m="0"
               objectFit="cover"
               alt="tattoo"

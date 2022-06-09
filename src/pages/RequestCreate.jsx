@@ -13,6 +13,11 @@ import {
   Container,
   Textarea,
   Box,
+  VStack,
+  Heading,
+  Flex,
+  UnorderedList,
+  Text,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -172,126 +177,156 @@ function RequestCreate() {
   //   };
 
   return (
-    <Container maxW="md">
-      <div className="RequestCreate">
-        <h1>Request</h1>
+    <Flex
+      flexGrow={1}
+      justify="center"
+      alignItems="center"
+      className="LoginPage"
+      bg="linear-gradient(180deg, rgba(252,245,233,0.0018601190476190688) 700px, rgba(23,25,35,1) 1000px), url('/images/allef-vinicius-vKIc4k6dm10-unsplash.jpg')"
+      bgSize="100%"
+    >
+      <VStack mt={12} mb={8} spacing={5} minW="400px">
+        <Heading
+          color="white"
+          as="h1"
+          fontSize="4xl"
+          fontWeight="black"
+          textTransform="uppercase"
+          mb={4}
+        >
+          Create a Tattoo Request
+        </Heading>
+        <Box mb={5} p={8} w="md" bg="white" rounded="lg">
+          <form onSubmit={handleSubmit}>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="title">Title</FormLabel>
+              <Input
+                type="text"
+                {...register("title", { required: true })}
+                onChange={handleTitle}
+              />
+              {errors.title && (
+                <FormErrorMessage>Required field.</FormErrorMessage>
+              )}
+            </FormControl>
 
-        <form onSubmit={handleSubmit}>
-          <FormControl>
-            <FormLabel htmlFor="title">Title</FormLabel>
-            <Input
-              type="text"
-              {...register("title", { required: true })}
-              onChange={handleTitle}
-            />
-            {errors.title && (
-              <FormErrorMessage>Required field.</FormErrorMessage>
-            )}
-          </FormControl>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="placement">Placement</FormLabel>
+              <Input
+                placeholder="E.g. arm"
+                type="text"
+                {...register("placement", { required: true })}
+                onChange={handlePlacement}
+              />
+              {errors.placement && (
+                <FormErrorMessage>Required field.</FormErrorMessage>
+              )}
+            </FormControl>
 
-          <FormControl>
-            <FormLabel htmlFor="placement">Placement</FormLabel>
-            <Input
-              placeholder="E.g. arm"
-              type="text"
-              {...register("placement", { required: true })}
-              onChange={handlePlacement}
-            />
-            {errors.placement && (
-              <FormErrorMessage>Required field.</FormErrorMessage>
-            )}
-          </FormControl>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="size">Size</FormLabel>
+              <Input
+                placeholder="E.g. 10cm"
+                type="text"
+                {...register("size", { required: true })}
+                onChange={handleSize}
+              />
+              {errors.size && (
+                <FormErrorMessage>Required field.</FormErrorMessage>
+              )}
+            </FormControl>
 
-          <FormControl>
-            <FormLabel htmlFor="size">Size</FormLabel>
-            <Input
-              placeholder="E.g. 10cm"
-              type="text"
-              {...register("size", { required: true })}
-              onChange={handleSize}
-            />
-            {errors.size && (
-              <FormErrorMessage>Required field.</FormErrorMessage>
-            )}
-          </FormControl>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="budget">Budget</FormLabel>
+              <Input
+                placeholder="In euro"
+                type="number"
+                {...register("budget", { required: true })}
+                onChange={handleBudget}
+              />
+              {errors.budget && (
+                <FormErrorMessage>Required field.</FormErrorMessage>
+              )}
+            </FormControl>
 
-          <FormControl>
-            <FormLabel htmlFor="budget">Budget</FormLabel>
-            <Input
-              placeholder="In euro"
-              type="number"
-              {...register("budget", { required: true })}
-              onChange={handleBudget}
-            />
-            {errors.budget && (
-              <FormErrorMessage>Required field.</FormErrorMessage>
-            )}
-          </FormControl>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="description">Description</FormLabel>
+              <Textarea
+                {...register("description", { required: true })}
+                onChange={handleDescription}
+              />
+              {errors.description && (
+                <FormErrorMessage>Required field.</FormErrorMessage>
+              )}
+            </FormControl>
 
-          <FormControl>
-            <FormLabel htmlFor="description">Description</FormLabel>
-            <Textarea
-              {...register("description", { required: true })}
-              onChange={handleDescription}
-            />
-            {errors.description && (
-              <FormErrorMessage>Required field.</FormErrorMessage>
-            )}
-          </FormControl>
+            <FormControl pb={3}>
+              <FormLabel htmlFor="color">
+                Is the tattoo coloured or black and white?
+              </FormLabel>
+              <RadioGroup>
+                <HStack spacing="24px">
+                  <Radio
+                    colorScheme="red"
+                    value="coloured"
+                    {...register("color", { required: true })}
+                  >
+                    Coloured
+                  </Radio>
+                  <Radio
+                    colorScheme="blue"
+                    value="blackandwhite"
+                    {...register("color", { required: true })}
+                  >
+                    Black and White
+                  </Radio>
+                </HStack>
+              </RadioGroup>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel htmlFor="color">
-              Is the tattoo coloured or black and white?
-            </FormLabel>
-            <RadioGroup>
-              <HStack spacing="24px">
-                <Radio
-                  colorScheme="red"
-                  value="coloured"
-                  {...register("color", { required: true })}
-                >
-                  Coloured
-                </Radio>
-                <Radio
-                  colorScheme="blue"
-                  value="blackandwhite"
-                  {...register("color", { required: true })}
-                >
-                  Black and White
-                </Radio>
-              </HStack>
-            </RadioGroup>
-          </FormControl>
+            <FormControl pb={3}>
+              <Box textAlign="left" p={5} bg="gray.100" m={4}>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <Text pt={2}>
+                    Drag 'n' drop some files here, or click to select files
+                  </Text>
+                  <UnorderedList pt="4" styleType="square">
+                    {acceptedFileItems}
+                  </UnorderedList>
+                </div>
+              </Box>
+            </FormControl>
 
-          <FormControl>
-            <Box p={5} bg="gray.100" m={4}>
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here, or click to select files</p>
-                <ul>{acceptedFileItems}</ul>
-              </div>
-            </Box>
-          </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="appointmentDate">Appointment Date</FormLabel>
+              <Input
+                type="datetime-local"
+                {...register("appointmentDate", { required: true })}
+                onChange={handleAppointmentDate}
+              />
+              {errors.appointmentDate && (
+                <FormErrorMessage>Required field.</FormErrorMessage>
+              )}
+            </FormControl>
 
-          <FormControl>
-            <FormLabel htmlFor="appointmentDate">appointmentDate</FormLabel>
-            <Input
-              type="datetime-local"
-              {...register("appointmentDate", { required: true })}
-              onChange={handleAppointmentDate}
-            />
-            {errors.appointmentDate && (
-              <FormErrorMessage>Required field.</FormErrorMessage>
-            )}
-          </FormControl>
+            <Button
+              bg="gray.900"
+              colorScheme="gray"
+              color="white"
+              px={16}
+              mt={6}
+              type="submit"
+            >
+              Make a Request
+            </Button>
+          </form>
 
-          <Button type="submit">Make a Request</Button>
-        </form>
-
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-      </div>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </Box>
+      </VStack>
       <ToastContainer />
-    </Container>
+    </Flex>
   );
 }
 

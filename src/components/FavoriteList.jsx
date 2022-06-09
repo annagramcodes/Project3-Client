@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { Link as ReachLink } from "react-router-dom";
 
@@ -8,27 +8,29 @@ function FavoriteList(props) {
   return (
     <>
       {favourites && (
-        <Box mt={6} boxShadow="base" textAlign="left" p="6" rounded="md">
-          <Heading
-            color="gray.700"
-            pb={0.5}
-            as="h4"
-            fontSize={{ sm: "16px", md: "18px" }}
-          >
-            Favorite artists
-          </Heading>
+        <>
           {favourites.map((favourite) => {
-            console.log(favourite);
             return (
-              <Box>
-                <ReachLink to={`/artist/${favourite._id}`}>
-                  <Text>{favourite.name}</Text>
-                  <Text>{favourite.location}</Text>
-                </ReachLink>
-              </Box>
+              <ReachLink to={`/artist/${favourite._id}`}>
+                <Flex gap={2} p={2} align="center">
+                  <Image
+                    borderRadius="full"
+                    boxSize="50px"
+                    objectFit="cover"
+                    src={favourite?.portfolioImages[0]}
+                    alt=""
+                  />
+                  <Box textAlign="left">
+                    <Heading mt={3} as="h6" fontSize="xl" fontWeight="bold">
+                      {favourite.name}
+                    </Heading>
+                    <Text>{favourite.location}</Text>
+                  </Box>
+                </Flex>
+              </ReachLink>
             );
           })}
-        </Box>
+        </>
       )}
     </>
   );

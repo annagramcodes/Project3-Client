@@ -30,7 +30,7 @@ function ArtistContent(props) {
             </Heading>
             <Image
               borderRadius="full"
-              w="150px"
+              w={{ base: "100px", md: "150px" }}
               objectFit="cover"
               src={user.imageUrl}
               alt=""

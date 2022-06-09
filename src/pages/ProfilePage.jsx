@@ -14,6 +14,7 @@ import {
   Tab,
   TabPanels,
   TabPanel,
+  Flex,
 } from "@chakra-ui/react";
 import useAxios from "../utils/axios.hook";
 import RequestContainer from "../components/RequestContainer";
@@ -37,21 +38,22 @@ function ProfilePage() {
   return (
     <Box
       flexGrow={1}
-      bg="rgba(0,0,0, 0.1) url('/images/james-discombe-06o01CtKjGw-unsplash.jpg') no-repeat"
-      backgroundBlendMode="screen"
+      bg="rgba(0,0,0, 0.1) url('/images/christer-ehrling-fie1PWHWeUo-unsplash.jpg') no-repeat"
+      filter="grayscale(70%)"
+      backgroundBlendMode="lighten"
       bgSize="100%"
     >
       {isLoggedIn && (
-        <Container pb={8} mt={12}>
+        <Container mt={12}>
           <Box
             bg="white"
             p={4}
             boxShadow="base"
-            rounded="md"
+            borderTopRadius="0.375rem"
             display="flex"
             flexDir={{ base: "column-reverse", md: "row-reverse" }}
             justifyContent="center"
-            gap={4}
+            gap={{ base: "50px", md: "100px" }}
             alignItems="center"
           >
             <Box>
@@ -83,7 +85,7 @@ function ProfilePage() {
       <Container mb={10}>
         <Tabs
           boxShadow="base"
-          rounded="md"
+          borderBottomRadius="0.375rem"
           bg="white"
           isFitted
           variant="enclosed"
@@ -120,9 +122,11 @@ function ProfilePage() {
               ) : null}
             </TabPanel>
             <TabPanel>
-              {userData && userData.favoriteArtists.length > 0 ? (
-                <FavoriteList favourites={userData.favoriteArtists} />
-              ) : null}
+              <Flex justify="space-evenly" gap={4} flexWrap="wrap">
+                {userData && userData.favoriteArtists.length > 0 ? (
+                  <FavoriteList favourites={userData.favoriteArtists} />
+                ) : null}
+              </Flex>
             </TabPanel>
           </TabPanels>
         </Tabs>
