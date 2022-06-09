@@ -1,4 +1,4 @@
-import { Container, Heading, Spinner } from "@chakra-ui/react";
+import { Flex, Spinner, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import useAxios from "../utils/axios.hook";
@@ -20,9 +20,16 @@ function EditArtist() {
   }
 
   return (
-    <Container>
-      <Heading as="h1">{artist.name}</Heading>
-    </Container>
+    <Flex flexGrow={1} justify="center" align="center">
+      <Text
+        color="gray.900"
+        fontSize="7xl"
+        textTransform="uppercase"
+        fontWeight="black"
+      >
+        coming soon
+      </Text>
+    </Flex>
   );
 }
 

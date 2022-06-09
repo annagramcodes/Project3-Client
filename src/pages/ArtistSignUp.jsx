@@ -63,18 +63,11 @@ function ArtistSignUp() {
       justify="center"
       alignItems="center"
       className="LoginPage"
-      bgSize="100%"
       bgImage="url('/images/annie-spratt-gv1I7bYLLDI-unsplash.jpg')"
+      bgSize={{ base: "cover", md: "100%" }}
     >
       <VStack mt={12} mb={8} spacing={5} minW="400px">
-        <Heading
-          color="white"
-          as="h1"
-          fontSize="4xl"
-          fontWeight="black"
-          textTransform="uppercase"
-          mb={4}
-        >
+        <Heading color="white" as="h1" fontSize="5xl" fontWeight="black" mb={4}>
           Tell us about your Workspace
         </Heading>
         <Box mb={5} p={8} w="md" bg="white" rounded="lg">

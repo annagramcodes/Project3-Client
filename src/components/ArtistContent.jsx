@@ -18,7 +18,14 @@ function ArtistContent(props) {
   const { user } = useContext(AuthContext);
 
   return (
-    <Box bg="white" boxShadow="base" textAlign="left" p="6" rounded="md">
+    <Box
+      mt={{ base: 8 }}
+      bg="white"
+      boxShadow="base"
+      textAlign="left"
+      p="6"
+      rounded="md"
+    >
       <Flex
         flexDirection={{ base: "column", md: "row" }}
         gap={{ sm: "20px", md: "80px" }}
@@ -30,7 +37,7 @@ function ArtistContent(props) {
             </Heading>
             <Image
               borderRadius="full"
-              w={{ base: "100px", md: "150px" }}
+              w={{ base: "120px", md: "150px" }}
               objectFit="cover"
               src={user.imageUrl}
               alt=""

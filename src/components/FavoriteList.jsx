@@ -12,7 +12,11 @@ function FavoriteList(props) {
           {favourites.map((favourite) => {
             return (
               <ReachLink to={`/artist/${favourite._id}`}>
-                <Flex gap={2} p={2} align="center">
+                <Flex
+                  gap={2}
+                  p={2}
+                  align={{ base: "flex-start", md: "center" }}
+                >
                   <Image
                     borderRadius="full"
                     boxSize="50px"

@@ -38,10 +38,11 @@ function ProfilePage() {
   return (
     <Box
       flexGrow={1}
-      bg="rgba(0,0,0, 0.1) url('/images/christer-ehrling-fie1PWHWeUo-unsplash.jpg') no-repeat"
+      bgColor="black"
+      bg="linear-gradient(180deg, rgba(252,245,233,0.0018601190476190688) 500px, rgba(23,25,35,1) 1000px), url('/images/christer-ehrling-fie1PWHWeUo-unsplash.jpg') no-repeat"
       filter="grayscale(40%)"
       backgroundBlendMode="lighten"
-      bgSize="100%"
+      bgSize={{ base: "stretch", md: "100%" }}
     >
       {isLoggedIn && (
         <Container mt={12}>
@@ -53,7 +54,7 @@ function ProfilePage() {
             display="flex"
             flexDir={{ base: "column-reverse", md: "row-reverse" }}
             justifyContent="center"
-            gap={{ base: "50px", md: "100px" }}
+            gap={{ base: "10px", md: "100px" }}
             alignItems="center"
           >
             <Box>

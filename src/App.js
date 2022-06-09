@@ -1,32 +1,29 @@
+import { ChakraProvider, Flex } from "@chakra-ui/react";
+import { useContext, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { useEffect, useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import HomePage from "./pages/HomePage";
-import { Routes, Route } from "react-router-dom";
-import SignupPage2 from "./pages/SignupPage2";
-import LoginPage from "./pages/LoginPage";
+import Dashboard from "./components/Dashboard";
+import Footer from "./components/Footer";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
-import ProfilePage from "./pages/ProfilePage";
-// import RequestPage from "./pages/RequestPage";
-
-import StylesPage from "./pages/StylesPage";
-import { ChakraProvider, Flex } from "@chakra-ui/react";
-import EditProfilePage from "./pages/EditProfilePage";
-import ArtistSignUp from "./pages/ArtistSignUp";
+import Navbar from "./components/Navbar";
+import { AuthContext } from "./context/auth.context";
+import AllArtistsPage from "./pages/AllArtistsPage";
 import ArtistPage from "./pages/ArtistPage";
+import ArtistSignUp from "./pages/ArtistSignUp";
 import EditArtist from "./pages/EditArtist";
-import Dashboard from "./components/Dashboard";
+import EditProfilePage from "./pages/EditProfilePage";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import ProfilePage from "./pages/ProfilePage";
 import RequestCreate from "./pages/RequestCreate";
 import RequestDetailsPage from "./pages/RequestDetailsPage";
-import AllArtistsPage from "./pages/AllArtistsPage";
-import Footer from "./components/Footer";
-import useInterval from "./utils/useInterval";
+import SignupPage2 from "./pages/SignupPage2";
+import StylesPage from "./pages/StylesPage";
 import useAxios from "./utils/axios.hook";
-import { AuthContext } from "./context/auth.context";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import useInterval from "./utils/useInterval";
 
 function App() {
   const [notified, setNotified] = useState(false);
@@ -46,8 +43,6 @@ function App() {
         console.log(artistInfo);
         let requests = artistInfo.data.requestsReceived;
 
-        //pending requests
-        //let requests = artistInfo.data.requestsReceived.filter((el) => el.status === 'pending');
         if (requests.length && !notified) {
           let message = requests[0].title;
           toast.info(`New request! : ${message} `, {
@@ -159,15 +154,6 @@ function App() {
               </IsPrivate>
             }
           />
-
-          {/* <Route
-            path="/requests"
-            element={
-              <IsPrivate>
-                <RequestPage />
-              </IsPrivate>
-            }
-          /> */}
           <Route
             path="/requests/:artistId/create"
             element={

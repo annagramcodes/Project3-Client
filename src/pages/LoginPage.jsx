@@ -60,13 +60,15 @@ function LoginPage() {
       justify="center"
       alignItems="center"
       className="LoginPage"
-      bgSize="100%"
-      bgImage="url('/images/kristian-angelo-xyJZvUL4_TY-unsplash.jpg')"
+      bg="url('/images/kristian-angelo-xyJZvUL4_TY-unsplash.jpg') no-repeat"
+      bgSize={{ base: "cover", md: "100%" }}
     >
       <VStack>
         <Heading
+          mt={{ base: 8, md: 14 }}
           color="white"
           as="h1"
+          fontSize="5xl"
           fontWeight="black"
           textTransform="uppercase"
           mb={4}

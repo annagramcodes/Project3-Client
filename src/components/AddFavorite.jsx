@@ -46,12 +46,12 @@ function AddFavorite(props) {
   return (
     <>
       {isFavourite ? (
-        <Button onClick={handleClick}>
+        <Button variant="outline" px={7} onClick={handleClick}>
           Remove Fav
           <Icon as={RiHeartFill} w={6} h={6} pl={1} color="red.500" />
         </Button>
       ) : (
-        <Button onClick={handleClick}>
+        <Button variant="outline" px={7} onClick={handleClick}>
           Add Fav <Icon as={RiHeartLine} w={6} h={6} pl={1} color="red.500" />
         </Button>
       )}

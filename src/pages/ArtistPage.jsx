@@ -58,14 +58,19 @@ function ArtistPage() {
     <>
       {artist && (
         <Box
-          bg=" linear-gradient(180deg, rgba(252,245,233,0.1) 400px, rgba(255,255,255,1) 1000px), url('/images/annie-spratt-gv1I7bYLLDI-unsplash.jpg') no-repeat"
-          bgSize="100%"
+          bg="linear-gradient(180deg, rgba(252,245,233,0.1) 400px, rgba(255,255,255,1) 1000px), url('/images/annie-spratt-gv1I7bYLLDI-unsplash.jpg') no-repeat"
           bgColor="white"
+          bgSize={{ base: "cover", md: "100%" }}
         >
-          <Container maxW="container.lg" py={{ sm: 4, md: 10 }}>
-            <Box m="auto" mb={10} w={{ base: "70%", md: "md" }}>
+          <Container maxW="container.lg" py={{ sm: 4, md: 6 }}>
+            <Box m="auto" mb={10} w={{ base: "xs", md: "md" }}>
               <ArtistContent artist={artist}>
-                <Flex gap={6} justify="center" align="center">
+                <Flex
+                  flexDirection={{ base: "column", md: "row" }}
+                  gap={{ base: 1, md: 6 }}
+                  justify="center"
+                  align="center"
+                >
                   <ReachLink to={`/requests/${artist._id}/create`}>
                     <Button colorScheme="pink" px={16} my={4}>
                       Book

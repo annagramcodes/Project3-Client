@@ -60,10 +60,12 @@ function SignupPage() {
       bgSize="100%"
       bgImage="url('/images/eugene-chystiakov-w8fulqCkj8w-unsplash.jpg')"
     >
-      <VStack>
+      <VStack mb={{ base: 3, md: 8 }}>
         <Heading
+          mt={{ base: 8, md: 14 }}
           color="white"
           as="h1"
+          fontSize="5xl"
           fontWeight="black"
           textTransform="uppercase"
           mb={4}

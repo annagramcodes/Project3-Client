@@ -83,11 +83,11 @@ function ArtistDashboard() {
       {artist && (
         <Box
           bg=" linear-gradient(180deg, rgba(252,245,233,0.1) 500px, rgba(255,255,255,1) 1000px), url('/images/annie-spratt-7Ajvv-KOi20-unsplash.jpg') no-repeat"
-          bgSize="100%"
+          bgSize={{ base: "cover", md: "100%" }}
           bgColor="white"
         >
           <Container maxW="container.lg" py={{ sm: 4, md: 10 }}>
-            <Box m="auto" mb={10} w={{ base: "70%", md: "md" }}>
+            <Box m="auto" mb={10} w={{ base: "80%", md: "md" }}>
               <ArtistContent artist={artist}>
                 <ReachLink to="/artist/edit">
                   <Button

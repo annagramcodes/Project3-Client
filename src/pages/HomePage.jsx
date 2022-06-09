@@ -28,7 +28,7 @@ function HomePage() {
         minH="80vh"
         bg="rgba(0,0,0,0.3) url('/images/maria-oswalt-FAnM_Vqs-N0-unsplash.jpg') no-repeat center"
         backgroundBlendMode="darken"
-        bgSize="100%"
+        bgSize={{ base: "stretch", md: "100%" }}
       >
         <Box>
           <Heading
@@ -37,12 +37,17 @@ function HomePage() {
             fontWeight="black"
             as="h1"
             color="white"
-            fontSize="7xl"
+            fontSize={{ base: "5xl", md: "7xl" }}
           >
             Tatuadores Lisboa
           </Heading>
-          <Text letterSpacing="wide" fontSize="xl" color="white">
-            find an artist in Lisbon for your next project
+          <Text
+            letterSpacing="wide"
+            fontSize={{ base: "sm", md: "xl" }}
+            color="white"
+            pb={{ base: "2rem" }}
+          >
+            Find tattoo artists in Lisbon!
           </Text>
           <ReachLink to="/artist">
             <Button
@@ -61,13 +66,17 @@ function HomePage() {
       </Flex>
       <Flex
         px={{ base: "2rem", md: "10rem" }}
-        flexDirection={{ base: "column", md: "row" }}
-        gap={{ base: "4rem", md: "8rem" }}
+        flexDirection={{ base: "column-reverse", md: "row" }}
+        gap={{ base: "1rem", md: "8rem" }}
         w="100%"
         minH="60vh"
         mb={{ base: "50px", md: "150px" }}
       >
-        <Image boxSize="lg" src={image1} />
+        <Image
+          objectFit="contain"
+          boxSize={{ base: "xs", md: "lg" }}
+          src={image1}
+        />
         <Box textAlign="left">
           <Heading mb="3rem" as="h2" fontSize="4xl" fontWeight="black">
             How it works
@@ -118,7 +127,8 @@ function HomePage() {
               colorScheme="gray"
               color="white"
               px={20}
-              my={8}
+              my={{ base: 0, md: 8 }}
+              mx={{ base: "14%", md: 0 }}
             >
               Sign up
             </Button>
@@ -128,7 +138,7 @@ function HomePage() {
       <Flex
         px={{ base: "2rem", md: "12rem" }}
         flexDirection={{ base: "column-reverse", md: "row-reverse" }}
-        gap={{ base: "4rem", md: "4rem" }}
+        gap={{ base: "1rem", md: "4rem" }}
         w="100%"
         minH="60vh"
         mb={{ base: "50px", md: "100px" }}
@@ -155,6 +165,7 @@ function HomePage() {
               px={20}
               my={8}
               fontWeight="bold"
+              mx={{ base: "16%", md: 0 }}
             >
               Explore
             </Button>

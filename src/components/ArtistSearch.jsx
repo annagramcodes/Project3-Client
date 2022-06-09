@@ -26,10 +26,10 @@ function ArtistSearch(props) {
       {stylesMatrix.map((styles) => {
         return (
           <Button
-            colorScheme="gray"
+            colorScheme="pink"
             mx={1.5}
             my={1.5}
-            size="md"
+            size={{ base: "sm", md: "md" }}
             borderRadius="full"
             variant="outline"
             value={styles.label}
