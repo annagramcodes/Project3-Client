@@ -40,7 +40,7 @@ function ArtistContent(props) {
               borderRadius="full"
               boxSize={{ base: "100px", md: "150px" }}
               objectFit="cover"
-              src={artist.owner?.imageUrl}
+              src={artist.portfolioImages[0]}
               alt="pic of artist"
             />
           </Flex>
