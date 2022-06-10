@@ -35,12 +35,13 @@ function ArtistContent(props) {
             <Heading color="gray.700" as="h2" pb={8}>
               {artist.name}
             </Heading>
+
             <Image
               borderRadius="full"
-              w={{ base: "120px", md: "150px" }}
+              boxSize={{ base: "100px", md: "150px" }}
               objectFit="cover"
-              src={user.imageUrl}
-              alt=""
+              src={artist.owner?.imageUrl}
+              alt="pic of artist"
             />
           </Flex>
 
