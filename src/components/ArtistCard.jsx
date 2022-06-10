@@ -23,7 +23,7 @@ function ArtistCard(props) {
             textAlign="left"
             borderRadius="3xl"
             w="330px"
-            minhHeight="400px"
+            h="400px"
           >
             <Image
               w="330px"
