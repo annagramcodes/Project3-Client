@@ -73,6 +73,7 @@ function ProfilePage() {
                 </Button>
               </ReachLink>
             </Box>
+
             <Image
               borderRadius="full"
               boxSize="150px"
